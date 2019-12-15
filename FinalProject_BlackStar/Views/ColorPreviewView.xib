@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorPreviewView" customModule="FinalProject_BlackStar" customModuleProvider="target">
+            <connections>
+                <outlet property="colorNameLabel" destination="6Ke-eJ-M11" id="J26-4O-fiU"/>
+                <outlet property="colorView" destination="iem-iz-1Lu" id="5Id-fC-lLl"/>
+                <outlet property="roundedStrokeView" destination="ipM-Im-1Be" id="aam-kq-WaC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="425" height="188"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Du1-jO-4RX">
+                    <rect key="frame" x="162.5" y="69" width="100" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Black" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ke-eJ-M11">
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipM-Im-1Be" customClass="RoundedView" customModule="FinalProject_BlackStar" customModuleProvider="target">
+                            <rect key="frame" x="50" y="0.0" width="50" height="50"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iem-iz-1Lu" customClass="RoundedImageView" customModule="FinalProject_BlackStar" customModuleProvider="target">
+                                    <rect key="frame" x="1" y="1" width="48" height="48"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ipM-Im-1Be" secondAttribute="height" multiplier="1:1" id="1QU-T3-0I4"/>
+                                <constraint firstAttribute="trailing" secondItem="iem-iz-1Lu" secondAttribute="trailing" constant="1" id="3hC-B3-7v8"/>
+                                <constraint firstAttribute="bottom" secondItem="iem-iz-1Lu" secondAttribute="bottom" constant="1" id="MeY-zm-VuX"/>
+                                <constraint firstItem="iem-iz-1Lu" firstAttribute="top" secondItem="ipM-Im-1Be" secondAttribute="top" constant="1" id="PwF-P6-fG5"/>
+                                <constraint firstItem="iem-iz-1Lu" firstAttribute="leading" secondItem="ipM-Im-1Be" secondAttribute="leading" constant="1" id="f8g-Hy-AJ9"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ipM-Im-1Be" firstAttribute="height" secondItem="6Ke-eJ-M11" secondAttribute="height" id="BAS-yS-w89"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Du1-jO-4RX" secondAttribute="trailing" id="0Cr-10-GSQ"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Du1-jO-4RX" secondAttribute="bottom" id="7p8-mh-SjR"/>
+                <constraint firstItem="Du1-jO-4RX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" id="9B7-Gk-jYF"/>
+                <constraint firstItem="Du1-jO-4RX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IgP-Ex-vCR"/>
+                <constraint firstItem="Du1-jO-4RX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="Thd-i8-cGg"/>
+                <constraint firstItem="Du1-jO-4RX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bU4-xN-rDM"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="196.37681159420291" y="13.392857142857142"/>
+        </view>
+    </objects>
+</document>
