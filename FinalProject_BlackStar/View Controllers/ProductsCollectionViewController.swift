@@ -12,6 +12,8 @@ class ProductsCollectionViewController: UICollectionViewController {
 
     var productsController: ProductsController!
     var subcategory: Subcategory!
+
+    let transition = PopAnimator()
     
     // MARK: - Life cycle
     
@@ -72,10 +74,12 @@ class ProductsCollectionViewController: UICollectionViewController {
         case "Select Product":
             
             let vc = segue.destination as! ProductViewController
-            let cell = sender as! UICollectionViewCell
+            let cell = sender as! ProductCollectionViewCell
             let indexPath = collectionView.indexPath(for: cell)!
                 
             vc.product = productsController.object(at: indexPath.item)
+            vc.mainImage = cell.productImageView.image
+            vc.transitioningDelegate = self
             
         default:
             break
@@ -138,5 +142,29 @@ extension ProductsCollectionViewController: ProductsControllerDelegate {
     
     func fetchDidEnd(_ controller: ProductsController, error: Error?) {
         
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension ProductsCollectionViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        guard let indexPath = collectionView.indexPathsForSelectedItems?.first,
+            let cell = collectionView.cellForItem(at: indexPath) as? ProductCollectionViewCell else {
+            return nil
+        }
+        
+        transition.originFrame = collectionView.convert(cell.frame, to: nil)
+        transition.presenting = true
+        
+        return transition
+    }
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        transition.presenting = false
+        
+        return transition
     }
 }

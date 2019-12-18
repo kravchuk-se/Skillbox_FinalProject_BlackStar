@@ -36,6 +36,7 @@ class ProductViewController: UIViewController {
     
     private var needsToFetchImage = true
     var product: ProductPresentation!
+    var mainImage: UIImage?
     private var linkedProductsController: LinkedProductsController!
     var offer: OfferPresentation? {
         didSet {
@@ -58,6 +59,10 @@ class ProductViewController: UIViewController {
         linkedProductsController = LinkedProductsController(productID: product.id)
         
         initializeImageViews()
+        
+        if let mainImageURL = product.mainImage {
+            imageViews[mainImageURL]?.image = mainImage
+        }
         
         pageControl.numberOfPages = product.productImageURLs.count
         pageControl.currentPage = 0

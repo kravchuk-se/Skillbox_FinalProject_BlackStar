@@ -22,6 +22,7 @@
 		7C15CC02238A359A003C6EA8 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C15CC01238A359A003C6EA8 /* CategoriesTableViewController.swift */; };
 		7C15CC05238A4746003C6EA8 /* SubcategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C15CC04238A4746003C6EA8 /* SubcategoriesTableViewController.swift */; };
 		7C15CC07238A4936003C6EA8 /* ProductsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C15CC06238A4936003C6EA8 /* ProductsCollectionViewController.swift */; };
+		7C2DC5B023AA59A70042191D /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2DC5AF23AA59A70042191D /* PopAnimator.swift */; };
 		7C35090323A686CC00E03E7A /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35090223A686CC00E03E7A /* ImageProvider.swift */; };
 		7C45489C23933FF000B73DEF /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C45489B23933FF000B73DEF /* ProductCollectionViewCell.xib */; };
 		7C470A2E238A76CE00ED6B04 /* CartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C470A2D238A76CE00ED6B04 /* CartTableViewController.swift */; };
@@ -81,6 +82,7 @@
 		7C15CC01238A359A003C6EA8 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 		7C15CC04238A4746003C6EA8 /* SubcategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoriesTableViewController.swift; sourceTree = "<group>"; };
 		7C15CC06238A4936003C6EA8 /* ProductsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewController.swift; sourceTree = "<group>"; };
+		7C2DC5AF23AA59A70042191D /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopAnimator.swift; path = "View Controllers/PopAnimator.swift"; sourceTree = "<group>"; };
 		7C35090223A686CC00E03E7A /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		7C45489B23933FF000B73DEF /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		7C470A2D238A76CE00ED6B04 /* CartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartTableViewController.swift; path = FinalProject_BlackStar/CartTableViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -142,6 +144,7 @@
 		7C15CBDC238A1765003C6EA8 /* FinalProject_BlackStar */ = {
 			isa = PBXGroup;
 			children = (
+				7C2DC5AF23AA59A70042191D /* PopAnimator.swift */,
 				7CE871E22393D0A800881D47 /* Realm+.swift */,
 				7C5326E92392450E007EB82B /* UIViewController+.swift */,
 				7C5326E7239244DB007EB82B /* BatchUpdate.swift */,
@@ -377,6 +380,7 @@
 				7CC19A82239CCE3900F409F6 /* ProductRealm.swift in Sources */,
 				7C35090323A686CC00E03E7A /* ImageProvider.swift in Sources */,
 				7CE871DB2393ADC200881D47 /* Category.swift in Sources */,
+				7C2DC5B023AA59A70042191D /* PopAnimator.swift in Sources */,
 				7CF96C3A23A5B5350030B229 /* ProductPresentation.swift in Sources */,
 				7C470A30238AA3BD00ED6B04 /* ProductViewController.swift in Sources */,
 				7CF96C4123A662750030B229 /* ModalPicker.swift in Sources */,
