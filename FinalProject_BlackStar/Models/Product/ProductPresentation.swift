@@ -161,3 +161,8 @@ extension ProductRealm {
     }
 }
 
+extension OfferRealm {
+    var presentation: OfferPresentation {
+        return OfferPresentation(size: size, productOfferID: productOfferID, quantity: quantity)
+    }
+}

@@ -224,7 +224,7 @@ class ProductViewController: UIViewController {
     
     @IBAction func addToCartButtonPressed(_ sender: UIButton) {
         if let offer = offer {
-            
+            Cart.current.addToCart(product, offer: offer)
         } else {
             performSegue(withIdentifier: "ChoseSize", sender: sender)
         }

@@ -151,6 +151,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cart" id="5dO-Gh-JpI"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="hdi-dl-b8l">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh:" destination="fE8-fW-Jyl" eventType="valueChanged" id="jiB-3v-uQc"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDf-GX-zhi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -442,6 +448,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Kk0-4Y-7ot"/>
+        <segue reference="Dfp-rT-orI"/>
     </inferredMetricsTieBreakers>
 </document>

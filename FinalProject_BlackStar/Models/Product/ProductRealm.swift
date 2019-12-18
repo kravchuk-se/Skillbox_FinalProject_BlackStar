@@ -36,6 +36,10 @@ class OfferRealm: Object {
     @objc dynamic var size: String = ""
     @objc dynamic var productOfferID: String = ""
     @objc dynamic var quantity: Int = 0
+    
+    override class func primaryKey() -> String? {
+        return "productOfferID"
+    }
 }
 
 class ProductImageRealm: Object {

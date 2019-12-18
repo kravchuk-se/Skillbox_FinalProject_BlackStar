@@ -28,31 +28,34 @@ class CartTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? Cart.current.products.count : 0
+        return section == 0 ? Cart.current.numberOfItems : 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartItemTableViewCell
 
-//        let product = Cart.current.products[indexPath.row]
-//        let offer = product.product.offers.first { $0.productOfferID == product.offerID }!
-//        let productVM = (product.product)
-//        
-//        cell.imageURL = product.product.mainImage
-//        cell.nameLabel.text = product.product.name
-//
-//        let sizeAttributedString = NSMutableAttributedString(string: "Размер: ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel])
-//        sizeAttributedString.append(NSAttributedString(string: offer.size, attributes: [NSAttributedString.Key.foregroundColor: UIColor.label]))
-//
-//        cell.oldPriceLabel.text = productVM.oldPrice
-//        cell.currentPriceLabel.text = productVM.price
-//
-//        cell.sizeLabel.attributedText = NSAttributedString(attributedString: sizeAttributedString)
+        let (product, offer) = Cart.current.object(at: indexPath.row)
+         
+        cell.imageURL = product.mainImage
+        cell.nameLabel.text = product.name
+
+        let sizeAttributedString = NSMutableAttributedString(string: "Размер: ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel])
+        sizeAttributedString.append(NSAttributedString(string: offer.size, attributes: [NSAttributedString.Key.foregroundColor: UIColor.label]))
+
+        cell.oldPriceLabel.text = product.oldPrice
+        cell.currentPriceLabel.text = product.price
+
+        cell.sizeLabel.attributedText = NSAttributedString(attributedString: sizeAttributedString)
         
         return cell
     }
 
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
@@ -67,19 +70,20 @@ class CartTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-//        switch segue.identifier {
-//        case "Select Product":
-//
-//            let cell = sender as! UITableViewCell
-//            let indexPath = tableView.indexPath(for: cell)!
-//            let product = Cart.current.products[indexPath.row]
-//
-//            let vc = segue.destination as! ProductViewController
-//            vc.productID = product.product.id!
-//
-//        default:
-//            break
-//        }
+        switch segue.identifier {
+        case "Select Product":
+
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)!
+            let (product, offer) = Cart.current.object(at: indexPath.row)
+
+            let vc = segue.destination as! ProductViewController
+            vc.product = product
+            vc.offer = offer
+
+        default:
+            break
+        }
         
     }
     
