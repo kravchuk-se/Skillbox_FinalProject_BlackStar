@@ -27,6 +27,7 @@ class ProductViewController: UIViewController {
     @IBOutlet weak var productAttributesTextView: UITextView!
     @IBOutlet weak var productDescriptionTextView: UITextView!
     
+    @IBOutlet weak var selectSizeButton: UIButton!
     @IBOutlet weak var addToCartButton: UIButton!
     
     @IBOutlet weak var recommendedProductsCollectionView: UICollectionView!
@@ -36,7 +37,11 @@ class ProductViewController: UIViewController {
     private var needsToFetchImage = true
     var product: ProductPresentation!
     private var linkedProductsController: LinkedProductsController!
-    var offer: OfferJSON?
+    var offer: OfferPresentation? {
+        didSet {
+            updateUI()
+        }
+    }
     
     var imageViews: [String:UIImageView] = [:]
     
@@ -85,6 +90,7 @@ class ProductViewController: UIViewController {
             fetchImages()
             needsToFetchImage = false
         }
+        updateUI()
     }
     
     // MARK: - Layout
@@ -142,6 +148,16 @@ class ProductViewController: UIViewController {
         }
     }
     
+    func updateUI() {
+        
+        if let offer = offer {
+            selectSizeButton?.setTitle("Размер: \(offer.size)", for: .normal)
+        } else {
+            selectSizeButton?.setTitle("Размер", for: .normal)
+        }
+        
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -149,9 +165,12 @@ class ProductViewController: UIViewController {
         case "ChoseSize":
             
             let vc = segue.destination as! ModalPicker
-            vc.delegate = self
+            vc.pickerTitle = "Select size:"
+            vc.options = product.offers.map { offer in (offer.productOfferID, offer.size, "\(offer.quantity)", false) }
             
-            vc.options = product.offers.map { offer in (offer.size, "\(offer.quantity)", false) }
+            vc.onSelect = {[weak self] selectedOption in
+                self?.offer = self?.product.offers.first(where: { $0.productOfferID == selectedOption.id })
+            }
             
         default:
             break
@@ -223,15 +242,5 @@ extension ProductViewController: UICollectionViewDelegateFlowLayout {
                           height: (safeSize.height))
         }
         
-    }
-}
-
-extension ProductViewController: ModalPickerDelegate {
-    func didSelectValue() {
-        presentedViewController?.dismiss(animated: true, completion: nil)
-        
-//        for subview in view.subviews where subview is UIVisualEffectView {
-//            subview.removeFromSuperview()
-//        }
     }
 }

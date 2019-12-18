@@ -8,36 +8,38 @@
 
 import UIKit
 
-protocol ModalPickerDelegate: class {
-    func didSelectValue()
-}
+typealias ModalPickerOption = (id: String, title: String, subtitle: String, isSelected: Bool)
 
 class ModalPicker: UIViewController {
 
+    @IBOutlet weak var pickerTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
-    weak var delegate: ModalPickerDelegate?
-    
-    var options: [(String, String, Bool)] = [("XS","1 шт.", false)]
+    var onSelect: ((ModalPickerOption) -> Void)?
+    var pickerTitle: String?
+    var options: [ModalPickerOption] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.tableFooterView = UIView()
-        heightConstraint.constant = CGFloat(options.count) * tableView.rowHeight + 40.0
+        
+        pickerTitleLabel.text = pickerTitle
+        heightConstraint.constant = CGFloat(options.count) * tableView.rowHeight + 66 + (tableView.tableHeaderView?.bounds.height ?? 0)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        dismissWithCustomAnimation()
+    }
+    
+    private func dismissWithCustomAnimation() {
         UIView.animate(withDuration: 0.3, animations: {
             self.view.alpha = 0
         }, completion: { _ in
             self.dismiss(animated: false, completion: nil)
         })
-        
-        
-        //delegate?.didSelectValue()
     }
     
 }
@@ -53,9 +55,17 @@ extension ModalPicker: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath)
         
+        cell.textLabel?.text = options[indexPath.row].title
+        cell.detailTextLabel?.text = options[indexPath.row].subtitle
+        
         return cell
         
     }
 }
 
-
+extension ModalPicker: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onSelect?(options[indexPath.row])
+        dismissWithCustomAnimation()
+    }
+}
