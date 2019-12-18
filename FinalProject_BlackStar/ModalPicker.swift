@@ -46,6 +46,14 @@ class ModalPicker: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.bottomConstraint.constant = -self.heightConstraint.constant
+            self.view.layoutIfNeeded()
+        })
+    }
     
     // MARK: - Handle touches
     
