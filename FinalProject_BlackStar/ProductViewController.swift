@@ -22,7 +22,7 @@ class ProductViewController: UIViewController {
     
     @IBOutlet weak var productNameLabel: UILabel!
     
-    @IBOutlet weak var colorPreview: ColorPreviewView!
+    @IBOutlet weak var colorPreview: ColorPreviewButton!
     
     @IBOutlet weak var productAttributesTextView: UITextView!
     @IBOutlet weak var productDescriptionTextView: UITextView!
