@@ -1,5 +1,5 @@
 //
-//  ColorPreviewView.swift
+//  ColorPreviewButton.swift
 //  FinalProject_BlackStar
 //
 //  Created by Kravchuk Sergey on 01.12.2019.
@@ -9,13 +9,14 @@
 import UIKit
 
 @IBDesignable
-class ColorPreviewView: UIView {
+class ColorPreviewButton: UIButton {
 
     @IBOutlet weak var colorNameLabel: UILabel!
     @IBOutlet weak var roundedStrokeView: RoundedView!
     @IBOutlet weak var colorView: RoundedImageView!
+    @IBOutlet weak var disclosureIndicator: UIImageView!
     
-    let nibName = "ColorPreviewView"
+    let nibName = "ColorPreviewButton"
     
     var view: UIView!
     
@@ -74,8 +75,17 @@ class ColorPreviewView: UIView {
         view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         
         addSubview(view)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
+        view.addGestureRecognizer(tap)
     }
 
+    @objc func tap(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            sendActions(for: .touchUpInside)
+        }
+    }
+    
     func loadViewFromNib() -> UIView {
 
         let bundle = Bundle(for: type(of: self))

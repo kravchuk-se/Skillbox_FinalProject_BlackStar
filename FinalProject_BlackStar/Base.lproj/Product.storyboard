@@ -12,7 +12,7 @@
         <!--Product-->
         <scene sceneID="OoF-bZ-gsR">
             <objects>
-                <viewController storyboardIdentifier="ProductViewController" id="q3J-Un-bBR" customClass="ProductViewController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductViewController" modalPresentationStyle="fullScreen" id="q3J-Un-bBR" customClass="ProductViewController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eAa-kR-ktJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,8 +89,11 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qYK-nd-8zS">
                                                 <rect key="frame" x="20" y="637.5" width="374" height="44"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1Y-m8-wpm" customClass="ColorPreviewView" customModule="FinalProject_BlackStar" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1Y-m8-wpm" customClass="ColorPreviewButton" customModule="FinalProject_BlackStar" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="187" height="44"/>
+                                                        <connections>
+                                                            <action selector="selectColorButtonPressed:" destination="q3J-Un-bBR" eventType="touchUpInside" id="Waa-8Z-ITW"/>
+                                                        </connections>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zan-qH-3cj">
                                                         <rect key="frame" x="187" y="0.0" width="187" height="44"/>
@@ -102,7 +105,7 @@
                                                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <segue destination="fct-YC-FIb" kind="presentation" identifier="ChoseSize" id="4wS-Hn-qaC"/>
+                                                                    <action selector="selectSizeButtonPressed:" destination="q3J-Un-bBR" eventType="touchUpInside" id="z8J-nK-qTx"/>
                                                                 </connections>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RdO-6N-Ubb">
@@ -522,6 +525,8 @@
                         <outlet property="recommendedProductsCollectionView" destination="9yu-tm-XQy" id="i7W-Vn-AlU"/>
                         <outlet property="selectSizeButton" destination="iGi-gO-qz2" id="opD-jj-3aF"/>
                         <outlet property="tagView" destination="fQR-tn-NAL" id="X9X-UC-L1H"/>
+                        <segue destination="fct-YC-FIb" kind="presentation" identifier="ChoseSize" id="AgR-6M-0We"/>
+                        <segue destination="fct-YC-FIb" kind="presentation" identifier="ChoseColor" id="0WM-Qj-oq3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uno-VW-D5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -609,6 +614,7 @@
                         <viewLayoutGuide key="safeArea" id="5n8-oJ-jhO"/>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="4nr-cF-OEw" id="1YA-9N-sEt"/>
                         <outlet property="heightConstraint" destination="R1Y-wj-xTa" id="ErU-YY-2v8"/>
                         <outlet property="pickerTitleLabel" destination="kK1-3x-EVJ" id="q4r-X4-7Dq"/>
                         <outlet property="tableView" destination="nmh-IF-FWc" id="DfA-6G-Cp0"/>
@@ -624,4 +630,7 @@
         <image name="cart.badge.plus" catalog="system" width="64" height="48"/>
         <image name="chevron.down" catalog="system" width="64" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0WM-Qj-oq3"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -15,10 +15,13 @@ class ModalPicker: UIViewController {
     @IBOutlet weak var pickerTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var onSelect: ((ModalPickerOption) -> Void)?
     var pickerTitle: String?
     var options: [ModalPickerOption] = []
+    
+    // MARK: - View controller Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +29,28 @@ class ModalPicker: UIViewController {
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         
+        let tableHeight = CGFloat(options.count) * tableView.rowHeight + 66 + (tableView.tableHeaderView?.bounds.height ?? 0)
+        
         pickerTitleLabel.text = pickerTitle
-        heightConstraint.constant = CGFloat(options.count) * tableView.rowHeight + 66 + (tableView.tableHeaderView?.bounds.height ?? 0)
+        heightConstraint.constant = tableHeight
+        bottomConstraint.constant = -tableHeight
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        dismissWithCustomAnimation()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: 0.1) {
+            self.bottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
     
-    private func dismissWithCustomAnimation() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view.alpha = 0
-        }, completion: { _ in
-            self.dismiss(animated: false, completion: nil)
-        })
+    
+    // MARK: - Handle touches
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dismiss(animated: true, completion: nil)
     }
     
 }
@@ -66,6 +77,5 @@ extension ModalPicker: UITableViewDataSource {
 extension ModalPicker: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onSelect?(options[indexPath.row])
-        dismissWithCustomAnimation()
     }
 }

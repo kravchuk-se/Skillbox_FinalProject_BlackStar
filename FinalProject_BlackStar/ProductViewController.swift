@@ -50,9 +50,6 @@ class ProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.definesPresentationContext = true
-        self.providesPresentationContextTransitionStyle = true
-        
         self.recommendedProductsCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.reuseIdentifier)
         self.recommendedProductsCollectionView!.register(
             UINib(nibName: ProductCollectionViewCell.nibName, bundle: nil),
@@ -82,15 +79,16 @@ class ProductViewController: UIViewController {
         
         recommendedProductsCollectionView.dataSource = self
         recommendedProductsCollectionView.delegate = self
+        
+        updateUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if needsToFetchImage {
             fetchImages()
             needsToFetchImage = false
         }
-        updateUI()
     }
     
     // MARK: - Layout
@@ -156,13 +154,21 @@ class ProductViewController: UIViewController {
             selectSizeButton?.setTitle("Размер", for: .normal)
         }
         
+        colorPreview?.disclosureIndicator.isHidden = linkedProductsController.numberOfColors < 2
+        
     }
     
     // MARK: - Navigation
     
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ChoseSize":
+            
+            self.definesPresentationContext = true
             
             let vc = segue.destination as! ModalPicker
             vc.pickerTitle = "Select size:"
@@ -170,6 +176,30 @@ class ProductViewController: UIViewController {
             
             vc.onSelect = {[weak self] selectedOption in
                 self?.offer = self?.product.offers.first(where: { $0.productOfferID == selectedOption.id })
+                self?.dismiss(animated: true, completion: nil)
+            }
+        case "ChoseColor":
+            
+            self.definesPresentationContext = true
+            
+            var options = [ModalPickerOption]()
+            for i in 0..<linkedProductsController.numberOfColors {
+                let colorInfo = linkedProductsController.color(at: i)
+                options.append((id: colorInfo.colorName, title: colorInfo.colorName, "", false))
+            }
+            
+            let vc = segue.destination as! ModalPicker
+            vc.options = options
+            
+            vc.onSelect = { [weak self] selectedOption in
+                if selectedOption.id != self?.product.colorName,
+                    let otherColorProduct = self?.linkedProductsController.sameProduct(withColorNamed: selectedOption.id) {
+                    self?.dismiss(animated: true) {
+                        self?.performSegueToOtherProduct(product: otherColorProduct)
+                    }
+                } else {
+                    self?.dismiss(animated: true)
+                }
             }
             
         default:
@@ -177,17 +207,40 @@ class ProductViewController: UIViewController {
         }
     }
     
+    func performSegueToOtherProduct(product: ProductPresentation) {
+        let storyboard = UIStoryboard(name: "Product", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "ProductViewController") as! ProductViewController
+        //vc.modalPresentationStyle = .fullScreen
+        vc.product = product
+        show(vc, sender: nil)
+    }
+    
     // MARK: - Actions
     
     @IBAction func addToCartButtonPressed(_ sender: UIButton) {
-        //Cart.current.addToCart(product, offer: product.offers.first!)
+        if let offer = offer {
+            
+        } else {
+            performSegue(withIdentifier: "ChoseSize", sender: sender)
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    @IBAction func selectColorButtonPressed(_ sender: Any) {
+        if linkedProductsController.numberOfColors > 1 {
+            performSegue(withIdentifier: "ChoseColor", sender: sender)
+        }
+    }
+    
+    @IBAction func selectSizeButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ChoseSize", sender: sender)
+    }
     
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension ProductViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -195,6 +248,8 @@ extension ProductViewController: UIScrollViewDelegate {
         pageControl.currentPage = currentPage
     }
 }
+
+// MARK: - UICollectionViewDataSource
 
 extension ProductViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -214,16 +269,12 @@ extension ProductViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension ProductViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let storyboard = UIStoryboard(name: "Product", bundle: nil)
-        
-        let vc = storyboard.instantiateViewController(identifier: "ProductViewController") as! ProductViewController
-        
-        vc.product = linkedProductsController.recomendedProduct(at: indexPath.item)
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        performSegueToOtherProduct(product: linkedProductsController.recomendedProduct(at: indexPath.item))
         
     }
 }
