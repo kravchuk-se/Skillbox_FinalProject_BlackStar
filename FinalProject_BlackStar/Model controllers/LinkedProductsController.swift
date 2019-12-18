@@ -13,12 +13,14 @@ class LinkedProductsController {
     
     let productID: String
     
+    private var product: ProductRealm
+    
     private var productsWithOtherColors: Results<ProductRealm>
     private var recommendedProducts: Results<ProductRealm>
     
     init(productID: String) {
         self.productID = productID
-        let product = Realm.main.object(ofType: ProductRealm.self, forPrimaryKey: productID)!
+        product = Realm.main.object(ofType: ProductRealm.self, forPrimaryKey: productID)!
         
         let recommendedIDs: [String] = product.recommendedProductIDs.map{ $0 }
         
@@ -38,6 +40,12 @@ class LinkedProductsController {
     func color(at index: Int) -> (colorName: String, colorImageURL: String?) {
         let product = productsWithOtherColors[index]
         return (product.colorName, product.colorImageURL)
+    }
+    
+    func sameProduct(withColorNamed colorName: String) -> ProductPresentation? {
+        
+        return productsWithOtherColors.first(where: { $0.colorName == colorName } )?.presentation
+        
     }
     
     func recomendedProduct(at index: Int) -> ProductPresentation {
