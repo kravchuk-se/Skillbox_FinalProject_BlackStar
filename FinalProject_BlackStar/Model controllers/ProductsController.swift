@@ -68,28 +68,23 @@ class ProductsController {
     }
     
     func fetch() {
-        let url = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/products&cat_id=\(subcategoryId)")!
+        
         delegate?.fetchDidBegin(self)
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                
-                do {
-                    let productsById = try JSONDecoder().decode([String: ProductJSON].self, from: data)
-                    self.replaceProducts(with: productsById)
-                } catch {
-                    print(error)
+        BlackStarAPI.fetch(.products(subcategoryID: subcategoryId)) { (result: BlackStarAPI.Result<[String: ProductJSON]>) in
+            switch result {
+            case .success(let value):
+                self.replaceProducts(with: value)
+                DispatchQueue.main.async {
+                    self.delegate?.fetchDidEnd(self, error: nil)
+                }
+            case .fail(let error):
+                DispatchQueue.main.async {
                     self.delegate?.fetchDidEnd(self, error: error)
-                    return
                 }
-                self.delegate?.fetchDidEnd(self, error: nil)
-            } else {
-                if let error = error {
-                    print(error)
-                }
-                self.delegate?.fetchDidEnd(self, error: error)
             }
-        }.resume()
+        }
+        
     }
     
     private func replaceProducts(with products: [String: ProductJSON]) {

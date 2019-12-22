@@ -42,6 +42,7 @@
 		7CB888FE23936D8500C9B7A4 /* ColorPreviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */; };
 		7CB8890023936D9B00C9B7A4 /* ColorPreviewButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB888FF23936D9B00C9B7A4 /* ColorPreviewButton.xib */; };
 		7CC19A82239CCE3900F409F6 /* ProductRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC19A81239CCE3900F409F6 /* ProductRealm.swift */; };
+		7CC5D58923AF91E500D71602 /* BlackStarAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */; };
 		7CE871D92393AD7600881D47 /* CategoryRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE871D82393AD7600881D47 /* CategoryRealm.swift */; };
 		7CE871DB2393ADC200881D47 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE871DA2393ADC200881D47 /* Category.swift */; };
 		7CE871DD2393B07400881D47 /* SubcategoryRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE871DC2393B07400881D47 /* SubcategoryRealm.swift */; };
@@ -103,6 +104,7 @@
 		7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewButton.swift; sourceTree = "<group>"; };
 		7CB888FF23936D9B00C9B7A4 /* ColorPreviewButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPreviewButton.xib; sourceTree = "<group>"; };
 		7CC19A81239CCE3900F409F6 /* ProductRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRealm.swift; sourceTree = "<group>"; };
+		7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlackStarAPI.swift; path = "Model controllers/BlackStarAPI.swift"; sourceTree = "<group>"; };
 		7CE871D82393AD7600881D47 /* CategoryRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRealm.swift; sourceTree = "<group>"; };
 		7CE871DA2393ADC200881D47 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7CE871DC2393B07400881D47 /* SubcategoryRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryRealm.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		7C15CBDC238A1765003C6EA8 /* FinalProject_BlackStar */ = {
 			isa = PBXGroup;
 			children = (
+				7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */,
 				7C2DC5AF23AA59A70042191D /* PopAnimator.swift */,
 				7CE871E22393D0A800881D47 /* Realm+.swift */,
 				7C5326E92392450E007EB82B /* UIViewController+.swift */,
@@ -400,6 +403,7 @@
 				7C5326EA2392450E007EB82B /* UIViewController+.swift in Sources */,
 				7CE871D92393AD7600881D47 /* CategoryRealm.swift in Sources */,
 				7C470A34238AB41300ED6B04 /* CategoryTableViewCell.swift in Sources */,
+				7CC5D58923AF91E500D71602 /* BlackStarAPI.swift in Sources */,
 				7C860CEE2393E5F400312950 /* Subcategory.swift in Sources */,
 				7CB888FE23936D8500C9B7A4 /* ColorPreviewButton.swift in Sources */,
 			);

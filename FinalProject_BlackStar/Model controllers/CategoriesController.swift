@@ -62,91 +62,93 @@ class CategoriesController {
     
     func fetch() {
         
-        let url = URL(string: "http://blackstarshop.ru/index.php?route=api/v1/categories")!
         delegate?.fetchDidBegin(self)
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                do {
-                    var categoriesById = try JSONDecoder().decode([String: CategoryJSON].self, from: data)
-                    categoriesById.keys.forEach { key in
-                        categoriesById[key]!.id = key
-                    }
-                    self.replaceCategories(with: categoriesById.values.map({$0}))
-                } catch {
-                    print(error)
+     
+        BlackStarAPI.fetch(.categories, completion: { (result: BlackStarAPI.Result<[String: CategoryJSON]>) in
+            switch result {
+            case .success(let value):
+                self.replaceCategories(with: value)
+                DispatchQueue.main.async {
+                    self.delegate?.fetchDidEnd(self, error: nil)
+                }
+            case .fail(let error):
+                DispatchQueue.main.async {
+                    self.delegate?.fetchDidEnd(self, error: error)
                 }
             }
-            if let error = error {
-                print(error)
-            }
-            DispatchQueue.main.async {
-                self.delegate?.fetchDidEnd(self, error: error)
-            }
-        }.resume()
+        })
     }
     
-    private func replaceCategories(with categories: [CategoryJSON]) {
-        DispatchQueue.global().async {[categories] in
+    private func replaceCategories(with categoriesByID: [String: CategoryJSON]) {
+        DispatchQueue.global().async {
             
             let realm = try! Realm()
             
-            let objects = realm.objects(CategoryRealm.self)
-            for obj in objects {
-                if !categories.contains(where: { $0.id == obj.id }) {
-                    try! realm.write {
-                        realm.delete(obj)
-                    }
+            let oldCategories = realm.objects(CategoryRealm.self)
+                .filter( { categoriesByID[$0.id] == nil } )
+            
+            try! realm.write {
+                for category in oldCategories {
+                    realm.delete(category)
                 }
             }
             
+            var newCategories: [CategoryRealm] = []
+            var newSubcategoies: [SubcategoryRealm] = []
+            
+            var collections: [SubcategoryJSON] = []
+            
+            for (id, categoryJSON) in categoriesByID {
+                let newCategory = CategoryRealm()
+                newCategory.id              = id
+                newCategory.name            = categoryJSON.name
+                newCategory.iconImage       = categoryJSON.iconImage
+                newCategory.iconImageActive = categoryJSON.iconImageActive
+                newCategory.image           = categoryJSON.image
+                newCategory.sortOrder       = categoryJSON.sortOrder
+                
+                newCategories.append(newCategory)
+                
+                for subcategory in categoryJSON.subcategories {
+                    
+                    if subcategory.type == "Collection" {
+                        collections.append(subcategory)
+                    } else {
+                        let newSubcategory = SubcategoryRealm()
+                        newSubcategory.category  = newCategory
+                        newSubcategory.id        = subcategory.id
+                        newSubcategory.name      = subcategory.name
+                        newSubcategory.sortOrder = subcategory.sortOrder
+                        newSubcategory.iconImage = subcategory.iconImage
+                        
+                        newSubcategoies.append(newSubcategory)
+                    }
+                }
+                
+                if let collectionsCategory = realm.object(ofType: CategoryRealm.self, forPrimaryKey: "74") {
+                    for collection in collections {
+                        
+                        let newSubcategory = SubcategoryRealm()
+                        newSubcategory.category = collectionsCategory
+                        newSubcategory.id = collection.id
+                        newSubcategory.name = collection.name
+                        newSubcategory.sortOrder = collection.sortOrder
+                        newSubcategory.iconImage = collection.iconImage
+                        
+                        newSubcategoies.append(newSubcategory)
+                        
+                    }
+                }
+                
+            }
+            
+            
+            
             try! realm.write {
                 
-                var collections: [SubcategoryJSON] = []
+                realm.add(newCategories, update: .modified)
+                realm.add(newSubcategoies, update: .modified)
                 
-                categories.forEach { categoryJSON in
-                    let newCategory = CategoryRealm()
-                    newCategory.id              = categoryJSON.id
-                    newCategory.name            = categoryJSON.name
-                    newCategory.iconImage       = categoryJSON.iconImage
-                    newCategory.iconImageActive = categoryJSON.iconImageActive
-                    newCategory.image           = categoryJSON.image
-                    newCategory.sortOrder       = categoryJSON.sortOrder
-                    
-                    realm.add(newCategory, update: .modified)
-                    
-                    for subcategory in categoryJSON.subcategories {
-                        
-                        if subcategory.type == "Collection" {
-                            collections.append(subcategory)
-                        } else {
-                            let newSubcategory = SubcategoryRealm()
-                            newSubcategory.category  = newCategory
-                            newSubcategory.id        = subcategory.id
-                            newSubcategory.name      = subcategory.name
-                            newSubcategory.sortOrder = subcategory.sortOrder
-                            newSubcategory.iconImage = subcategory.iconImage
-                            
-                            realm.add(newSubcategory, update: .modified)
-                        }
-                    }
-                    
-                    if let collectionsCategory = realm.object(ofType: CategoryRealm.self, forPrimaryKey: "74") {
-                        for collection in collections {
-                            
-                            let newSubcategory = SubcategoryRealm()
-                            newSubcategory.category = collectionsCategory
-                            newSubcategory.id = collection.id
-                            newSubcategory.name = collection.name
-                            newSubcategory.sortOrder = collection.sortOrder
-                            newSubcategory.iconImage = collection.iconImage
-                            
-                            realm.add(newSubcategory, update: .modified)
-                            
-                        }
-                    }
-                    
-                }
             }
         }
     }
