@@ -47,6 +47,7 @@
 		7CE871DB2393ADC200881D47 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE871DA2393ADC200881D47 /* Category.swift */; };
 		7CE871DD2393B07400881D47 /* SubcategoryRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE871DC2393B07400881D47 /* SubcategoryRealm.swift */; };
 		7CE871E32393D0A800881D47 /* Realm+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE871E22393D0A800881D47 /* Realm+.swift */; };
+		7CF1FE8F23C1EC45003E9B9E /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF1FE8E23C1EC45003E9B9E /* ConfirmationViewController.swift */; };
 		7CF96C3A23A5B5350030B229 /* ProductPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96C3923A5B5350030B229 /* ProductPresentation.swift */; };
 		7CF96C3C23A611AC0030B229 /* LinkedProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96C3B23A611AC0030B229 /* LinkedProductsController.swift */; };
 		7CF96C3F23A65FB60030B229 /* Product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF96C3D23A65FB60030B229 /* Product.storyboard */; };
@@ -109,6 +110,7 @@
 		7CE871DA2393ADC200881D47 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7CE871DC2393B07400881D47 /* SubcategoryRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryRealm.swift; sourceTree = "<group>"; };
 		7CE871E22393D0A800881D47 /* Realm+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Realm+.swift"; path = "Supporting files/Realm+.swift"; sourceTree = "<group>"; };
+		7CF1FE8E23C1EC45003E9B9E /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		7CF96C3923A5B5350030B229 /* ProductPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresentation.swift; sourceTree = "<group>"; };
 		7CF96C3B23A611AC0030B229 /* LinkedProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedProductsController.swift; sourceTree = "<group>"; };
 		7CF96C3E23A65FB60030B229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Product.storyboard; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				7CF96C4023A662750030B229 /* ModalPicker.swift */,
+				7CF1FE8E23C1EC45003E9B9E /* ConfirmationViewController.swift */,
 				7C15CC01238A359A003C6EA8 /* CategoriesTableViewController.swift */,
 				7C15CC04238A4746003C6EA8 /* SubcategoriesTableViewController.swift */,
 				7C15CC06238A4936003C6EA8 /* ProductsCollectionViewController.swift */,
@@ -386,6 +389,7 @@
 				7C15CC02238A359A003C6EA8 /* CategoriesTableViewController.swift in Sources */,
 				7C15CC07238A4936003C6EA8 /* ProductsCollectionViewController.swift in Sources */,
 				7C5326E22392336D007EB82B /* CartItemTableViewCell.swift in Sources */,
+				7CF1FE8F23C1EC45003E9B9E /* ConfirmationViewController.swift in Sources */,
 				7C5326EC239252DA007EB82B /* TagView.swift in Sources */,
 				7C15CBE0238A1765003C6EA8 /* SceneDelegate.swift in Sources */,
 				7CE871E32393D0A800881D47 /* Realm+.swift in Sources */,

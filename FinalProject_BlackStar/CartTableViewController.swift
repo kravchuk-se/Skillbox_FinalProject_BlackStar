@@ -60,8 +60,18 @@ class CartTableViewController: UITableViewController {
         switch editingStyle {
         case .delete:
             
-            Cart.current.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            definesPresentationContext = true
+            let vc = ConfirmationViewController()
+            vc.setTitle(title: "Удалить товар из корзины?")
+            vc.addAction(ConfirmationAction(title: "ОК", style: .ok, handler: { _ in
+                
+                Cart.current.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            }))
+            vc.addAction(ConfirmationAction(title: "Отмена", style: .cancel, handler: nil))
+            present(vc, animated: true, completion: nil)
+            
             
         default:
             break

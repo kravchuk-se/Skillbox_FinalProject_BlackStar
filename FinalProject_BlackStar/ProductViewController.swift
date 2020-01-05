@@ -227,6 +227,7 @@ class ProductViewController: UIViewController {
         let vc = storyboard.instantiateViewController(identifier: "ProductViewController") as! ProductViewController
         //vc.modalPresentationStyle = .fullScreen
         vc.product = product
+        definesPresentationContext = false
         show(vc, sender: nil)
     }
     
