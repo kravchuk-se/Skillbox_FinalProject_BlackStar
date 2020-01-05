@@ -44,7 +44,8 @@ class ProductViewController: UIViewController {
         }
     }
     
-    var imageViews: [String:UIImageView] = [:]
+    private var imageViews: [String:UIImageView] = [:]
+    private var currentImageIndex = 0
     
     // MARK: - View controller life cycle
     
@@ -65,7 +66,7 @@ class ProductViewController: UIViewController {
         }
         
         pageControl.numberOfPages = product.productImageURLs.count
-        pageControl.currentPage = 0
+        pageControl.currentPage = currentImageIndex
         
         productNameLabel.text = product.name
         productDescriptionTextView.text = product.description
@@ -163,6 +164,15 @@ class ProductViewController: UIViewController {
         
     }
     
+    func scrollToCurrentImage() {
+        let rect = CGRect(x: imagesContainerView.bounds.width * CGFloat(pageControl.currentPage),
+                          y: 0,
+                          width: imagesContainerView.bounds.width,
+                          height: imagesContainerView.bounds.height)
+        
+        imagesScrollView.scrollRectToVisible(rect, animated: true)
+    }
+    
     // MARK: - Navigation
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -230,6 +240,11 @@ class ProductViewController: UIViewController {
         }
     }
     
+    @IBAction func imagesPageControlValueChanged(_ sender: UIPageControl) {
+        currentImageIndex = pageControl.currentPage
+        scrollToCurrentImage()
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
@@ -249,8 +264,8 @@ class ProductViewController: UIViewController {
 
 extension ProductViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentPage = Int(scrollView.contentOffset.x / imagesContainerView.bounds.width)
-        pageControl.currentPage = currentPage
+        currentImageIndex = Int(scrollView.contentOffset.x / imagesContainerView.bounds.width)
+        pageControl.currentPage = currentImageIndex
     }
 }
 

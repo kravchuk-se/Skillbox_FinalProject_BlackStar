@@ -49,6 +49,9 @@
                                                 <rect key="frame" x="187.5" y="525.5" width="39" height="37"/>
                                                 <color key="pageIndicatorTintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <connections>
+                                                    <action selector="imagesPageControlValueChanged:" destination="q3J-Un-bBR" eventType="valueChanged" id="8vV-BX-Ail"/>
+                                                </connections>
                                             </pageControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-VB-a9q">
                                                 <rect key="frame" x="20" y="570.5" width="374" height="50"/>
