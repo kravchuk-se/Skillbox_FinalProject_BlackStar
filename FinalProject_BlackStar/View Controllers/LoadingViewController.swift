@@ -26,27 +26,7 @@ class LoadingViewController: UIViewController {
                 activitiIndicator.stopAnimating()
                 
                 if successMessage != nil {
-                
-                successMessageLabel.alpha = 0
-                successMessageLabel.isHidden = false
-                
-                UIView.animate(withDuration: 0.2, animations: {
-                    
-                    self.boxViewWidthConstraint.constant = self.view.bounds.width - (20.0 * 2.0)
-                    
-                    self.view.layoutIfNeeded()
-                    
-                }, completion: { _ in
-                
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.successMessageLabel.alpha = 1
-                        
-                        self.boxViewHeightConstraint.constant = self.successMessageLabel.intrinsicContentSize.height + (20.0 * 2)
-                        
-                    })
-                    
-                })
-                
+                    showSuccessMessage()
                 } else {
                     dismiss(animated: true, completion: nil)
                 }
@@ -60,6 +40,10 @@ class LoadingViewController: UIViewController {
         
         modalPresentationStyle = .overFullScreen
         modalTransitionStyle = .crossDissolve
+        
+        boxView = UIView()
+        successMessageLabel = UILabel()
+        activitiIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60), type: .circleStrokeSpin, color: .black, padding: 10.0)
     }
     
     required init?(coder: NSCoder) {
@@ -69,11 +53,43 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        boxView = UIView()
-        successMessageLabel = UILabel()
-        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
+        setupBoxView()
+        setupActivityIndicator()
+        setupMessageLabel()
+        
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { [weak self] _ in
+            self?.taskCompleted = true
+        })
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        activitiIndicator.startAnimating()
+    }
+    
+    private func showSuccessMessage() {
+        successMessageLabel.alpha = 0
+        successMessageLabel.isHidden = false
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            
+            self.boxViewWidthConstraint.constant = self.view.bounds.width - (20.0 * 2.0)
+            self.view.layoutIfNeeded()
+            
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.2, animations: {
+                self.successMessageLabel.alpha = 1
+                
+                self.boxViewHeightConstraint.constant = self.successMessageLabel.intrinsicContentSize.height + (20.0 * 2)
+            })
+        })
+    }
+    
+    private func setupBoxView() {
         boxView.layer.cornerRadius = 5.0
         boxView.backgroundColor = .white
         boxView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,10 +104,9 @@ class LoadingViewController: UIViewController {
             view.centerXAnchor.constraint(equalTo: boxView.centerXAnchor),
             view.centerYAnchor.constraint(equalTo: boxView.centerYAnchor)
         ])
-        
-        
-        activitiIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60), type: .circleStrokeSpin, color: .black, padding: 10.0)
-        
+    }
+    
+    private func setupActivityIndicator() {
         activitiIndicator.translatesAutoresizingMaskIntoConstraints = false
         boxView.addSubview(activitiIndicator)
         
@@ -99,7 +114,9 @@ class LoadingViewController: UIViewController {
             boxView.centerXAnchor.constraint(equalTo: activitiIndicator.centerXAnchor),
             boxView.centerYAnchor.constraint(equalTo: activitiIndicator.centerYAnchor)
         ])
-        
+    }
+    
+    private func setupMessageLabel() {
         successMessageLabel.isHidden = true
         successMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         successMessageLabel.text = successMessage
@@ -112,18 +129,6 @@ class LoadingViewController: UIViewController {
             boxView.centerYAnchor.constraint(equalTo: successMessageLabel.centerYAnchor),
             boxView.widthAnchor.constraint(equalTo: successMessageLabel.widthAnchor, multiplier: 1, constant: 20)
         ])
-        
-        
-        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { [weak self] _ in
-            self?.taskCompleted = true
-        })
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        activitiIndicator.startAnimating()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
