@@ -38,6 +38,8 @@
 		7C5326E8239244DB007EB82B /* BatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5326E7239244DB007EB82B /* BatchUpdate.swift */; };
 		7C5326EA2392450E007EB82B /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5326E92392450E007EB82B /* UIViewController+.swift */; };
 		7C5326EC239252DA007EB82B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5326EB239252DA007EB82B /* TagView.swift */; };
+		7C7AD2B423C288BF0041C85C /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7AD2B323C288BF0041C85C /* NVActivityIndicatorView.framework */; };
+		7C7AD2B523C288BF0041C85C /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7AD2B323C288BF0041C85C /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C860CEC2393E56D00312950 /* SubcategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C860CEB2393E56D00312950 /* SubcategoriesController.swift */; };
 		7C860CEE2393E5F400312950 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C860CED2393E5F400312950 /* Subcategory.swift */; };
 		7CB888FE23936D8500C9B7A4 /* ColorPreviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */; };
@@ -64,6 +66,7 @@
 			files = (
 				7C15CBF8238A207E003C6EA8 /* RealmSwift.framework in Embed Frameworks */,
 				7C15CBF4238A207C003C6EA8 /* Realm.framework in Embed Frameworks */,
+				7C7AD2B523C288BF0041C85C /* NVActivityIndicatorView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +105,7 @@
 		7C5326E7239244DB007EB82B /* BatchUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchUpdate.swift; sourceTree = "<group>"; };
 		7C5326E92392450E007EB82B /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+.swift"; path = "View Controllers/UIViewController+.swift"; sourceTree = "<group>"; };
 		7C5326EB239252DA007EB82B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagView.swift; path = FinalProject_BlackStar/Models/TagView.swift; sourceTree = SOURCE_ROOT; };
+		7C7AD2B323C288BF0041C85C /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		7C860CEB2393E56D00312950 /* SubcategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoriesController.swift; sourceTree = "<group>"; };
 		7C860CED2393E5F400312950 /* Subcategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewButton.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			files = (
 				7C15CBF7238A207E003C6EA8 /* RealmSwift.framework in Frameworks */,
 				7C15CBF3238A207C003C6EA8 /* Realm.framework in Frameworks */,
+				7C7AD2B423C288BF0041C85C /* NVActivityIndicatorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +178,7 @@
 		7C15CBF1238A207C003C6EA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C7AD2B323C288BF0041C85C /* NVActivityIndicatorView.framework */,
 				7C15CBF6238A207E003C6EA8 /* RealmSwift.framework */,
 				7C15CBF2238A207C003C6EA8 /* Realm.framework */,
 			);
@@ -362,6 +368,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
 			);
 			outputFileListPaths = (
 			);

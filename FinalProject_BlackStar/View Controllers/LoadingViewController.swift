@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class LoadingViewController: UIViewController {
 
     private var boxView: UIView!
-    private var activitiIndicator: UIActivityIndicatorView!
+    private var activitiIndicator: NVActivityIndicatorView!
     
     private var taskCompleted = false {
         didSet {
@@ -52,7 +53,8 @@ class LoadingViewController: UIViewController {
         ])
         
         
-        activitiIndicator = UIActivityIndicatorView(style: .large)
+        activitiIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60), type: .circleStrokeSpin, color: .black, padding: 10.0)
+        
         activitiIndicator.translatesAutoresizingMaskIntoConstraints = false
         boxView.addSubview(activitiIndicator)
         
