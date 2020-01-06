@@ -427,7 +427,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="sHh-YQ-dbJ"/>
                     <connections>
-                        <segue destination="kOl-85-QJ4" kind="presentation" identifier="Select Product" modalPresentationStyle="currentContext" id="Kk0-4Y-7ot"/>
+                        <segue destination="kOl-85-QJ4" kind="presentation" identifier="Select Product" id="Kk0-4Y-7ot"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lf3-r3-g9x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

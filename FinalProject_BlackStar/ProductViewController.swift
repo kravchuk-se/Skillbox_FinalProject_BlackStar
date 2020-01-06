@@ -11,6 +11,7 @@ import UIKit
 class ProductViewController: UIViewController {
 
     // MARK: - Outlets
+    @IBOutlet weak var mainScrollView: UIScrollView!
     
     @IBOutlet weak var imagesContainerView: UIView!
     @IBOutlet weak var imagesScrollView: UIScrollView!
@@ -47,6 +48,14 @@ class ProductViewController: UIViewController {
     private var imageViews: [String:UIImageView] = [:]
     private var currentImageIndex = 0
     
+    private var tabBarIsHidden = false {
+        didSet {
+            if oldValue != tabBarIsHidden {
+                changeTabBar(hidden: tabBarIsHidden, animated: true)
+            }
+        }
+    }
+    
     // MARK: - View controller life cycle
     
     override func viewDidLoad() {
@@ -56,6 +65,9 @@ class ProductViewController: UIViewController {
         self.recommendedProductsCollectionView!.register(
             UINib(nibName: ProductCollectionViewCell.nibName, bundle: nil),
             forCellWithReuseIdentifier: ProductCollectionViewCell.reuseIdentifier)
+        
+        mainScrollView.delegate = self
+        mainScrollView.contentInsetAdjustmentBehavior = .never
         
         linkedProductsController = LinkedProductsController(productID: product.id)
         
@@ -97,6 +109,12 @@ class ProductViewController: UIViewController {
             fetchImages()
             needsToFetchImage = false
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        changeTabBar(hidden: false, animated: true)
     }
     
     // MARK: - Layout
@@ -173,6 +191,22 @@ class ProductViewController: UIViewController {
         imagesScrollView.scrollRectToVisible(rect, animated: true)
     }
     
+    func changeTabBar(hidden:Bool, animated: Bool){
+        guard let tabBar = self.presentingViewController?.tabBarController?.tabBar else { return }
+        if tabBar.isHidden == hidden{ return }
+        let frame = tabBar.frame
+        let offset = hidden ? frame.size.height : -frame.size.height
+        let duration:TimeInterval = (animated ? 0.5 : 0.0)
+        tabBar.isHidden = false
+
+        UIView.animate(withDuration: duration, animations: {
+            tabBar.frame = frame.offsetBy(dx: 0, dy: offset)
+            self.view.setNeedsLayout()
+        }, completion: { (finished) in
+            if finished { tabBar.isHidden = hidden }
+        })
+    }
+    
     // MARK: - Navigation
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -236,18 +270,6 @@ class ProductViewController: UIViewController {
     @IBAction func addToCartButtonPressed(_ sender: UIButton) {
         if let offer = offer {
             Cart.current.addToCart(product, offer: offer)
-            
-//            UIView.animate(withDuration: 0.2, animations: {
-//                self.addToCartButton.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
-//                self.addToCartButton.transform = .identity
-//            }, completion: { finished in
-//
-////                UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseInOut, animations: {
-////                    self.addToCartButton.transform = .identity
-////                }, completion: nil)
-//
-//            })
-            
         } else {
             performSegue(withIdentifier: "ChoseSize", sender: sender)
         }
@@ -277,9 +299,26 @@ class ProductViewController: UIViewController {
 
 extension ProductViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        currentImageIndex = Int(scrollView.contentOffset.x / imagesContainerView.bounds.width)
-        pageControl.currentPage = currentImageIndex
+        switch scrollView {
+        case imagesScrollView:
+            
+            currentImageIndex = Int(scrollView.contentOffset.x / imagesContainerView.bounds.width)
+            pageControl.currentPage = currentImageIndex
+            
+        case mainScrollView:
+            
+            let velocityY = scrollView.panGestureRecognizer.velocity(in: scrollView).y
+            if velocityY < 0 {
+                tabBarIsHidden = true
+            } else if velocityY > 0 {
+                tabBarIsHidden = false
+            }
+            
+        default:
+            break
+        }
     }
+    
 }
 
 // MARK: - UICollectionViewDataSource

@@ -12,7 +12,7 @@
         <!--Product-->
         <scene sceneID="OoF-bZ-gsR">
             <objects>
-                <viewController storyboardIdentifier="ProductViewController" modalPresentationStyle="fullScreen" id="q3J-Un-bBR" customClass="ProductViewController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductViewController" modalPresentationStyle="currentContext" id="q3J-Un-bBR" customClass="ProductViewController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eAa-kR-ktJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -504,7 +504,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="7p5-ee-eJc" firstAttribute="leading" secondItem="iYf-DP-Fms" secondAttribute="leading" id="B5A-T4-ak0"/>
-                            <constraint firstItem="7p5-ee-eJc" firstAttribute="bottom" secondItem="iYf-DP-Fms" secondAttribute="bottom" id="MvE-bV-x3w"/>
+                            <constraint firstItem="7p5-ee-eJc" firstAttribute="bottom" secondItem="eAa-kR-ktJ" secondAttribute="bottom" constant="-34" id="MvE-bV-x3w"/>
                             <constraint firstItem="OAp-B9-Mom" firstAttribute="top" secondItem="iYf-DP-Fms" secondAttribute="top" constant="8" id="RMQ-dY-cfh"/>
                             <constraint firstItem="7p5-ee-eJc" firstAttribute="top" secondItem="iYf-DP-Fms" secondAttribute="top" id="U9W-T8-Y7Y"/>
                             <constraint firstItem="OAp-B9-Mom" firstAttribute="leading" secondItem="iYf-DP-Fms" secondAttribute="leading" constant="20" id="qSd-G9-9eF"/>
@@ -520,6 +520,7 @@
                         <outlet property="colorPreview" destination="p1Y-m8-wpm" id="OQv-Hc-Y4O"/>
                         <outlet property="imagesContainerView" destination="W0z-ep-yh2" id="t8H-8g-vWi"/>
                         <outlet property="imagesScrollView" destination="ZFq-he-x1C" id="1CB-DW-bkK"/>
+                        <outlet property="mainScrollView" destination="7p5-ee-eJc" id="LU4-tG-KDo"/>
                         <outlet property="pageControl" destination="uTL-mq-scw" id="Q5i-cF-HPk"/>
                         <outlet property="priceLabel" destination="uEc-1L-at0" id="mxn-JK-I1r"/>
                         <outlet property="productAttributesTextView" destination="qLQ-c1-BdU" id="ihS-eS-AGO"/>
@@ -634,6 +635,6 @@
         <image name="chevron.down" catalog="system" width="64" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0WM-Qj-oq3"/>
+        <segue reference="AgR-6M-0We"/>
     </inferredMetricsTieBreakers>
 </document>
