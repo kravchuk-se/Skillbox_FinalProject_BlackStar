@@ -33,6 +33,7 @@ class CartViewController: UIViewController {
         definesPresentationContext = true
         
         let vc = LoadingViewController()
+        vc.successMessage = "Заказ оформлен!"
         present(vc, animated: true, completion: nil)
         
     }

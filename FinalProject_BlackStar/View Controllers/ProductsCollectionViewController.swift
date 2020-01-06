@@ -12,7 +12,11 @@ class ProductsCollectionViewController: UICollectionViewController {
 
     var productsController: ProductsController!
     var subcategory: Subcategory!
-
+    var fetchInProgress = false
+    
+    private let indexOfLoadingSection = 1
+    private let indexOfProductsSection = 0
+    
     let transition = PopAnimator()
     
     // MARK: - Life cycle
@@ -52,21 +56,42 @@ class ProductsCollectionViewController: UICollectionViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? productsController.numberOfObjects : 0
+        
+        switch section {
+        case indexOfLoadingSection:
+            return fetchInProgress ? 1 : 0
+        case indexOfProductsSection:
+            return productsController.numberOfObjects
+        default:
+            return 0
+        }
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ProductCollectionViewCell.reuseIdentifier,
-            for: indexPath) as! ProductCollectionViewCell
         
-        cell.configure(with: productsController.object(at: indexPath.item))
+        if indexPath.section == indexOfLoadingSection {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoadingCell", for: indexPath)
+            
+            return cell
+            
+        } else {
+            
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ProductCollectionViewCell.reuseIdentifier,
+                for: indexPath) as! ProductCollectionViewCell
+            
+            cell.configure(with: productsController.object(at: indexPath.item))
+            
+            return cell
+            
+        }
         
-        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,7 +104,6 @@ class ProductsCollectionViewController: UICollectionViewController {
                 
             vc.product = productsController.object(at: indexPath.item)
             vc.mainImage = cell.productImageView.image
-            vc.transitioningDelegate = self
             
         default:
             break
@@ -104,7 +128,9 @@ extension ProductsCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "Select Product", sender: collectionView.cellForItem(at: indexPath))
+        if indexPath.section == indexOfProductsSection {
+            performSegue(withIdentifier: "Select Product", sender: collectionView.cellForItem(at: indexPath))
+        }
     }
 }
 
@@ -114,16 +140,16 @@ extension ProductsCollectionViewController: ProductsControllerDelegate {
         switch changes {
         case .initial:
             
-            if collectionView.numberOfItems(inSection: 0) != productsController.numberOfObjects {
+            if collectionView.numberOfItems(inSection: indexOfProductsSection) != productsController.numberOfObjects {
                 collectionView.reloadData()
             }
             
         case .update(let deletions, let insertion, let modifications):
             
             collectionView.performBatchUpdates({
-                collectionView.deleteItems(at: deletions.map({IndexPath(item: $0, section: 0)}))
-                collectionView.insertItems(at: insertion.map({IndexPath(item: $0, section: 0)}))
-                collectionView.reloadItems(at: modifications.map({IndexPath(item: $0, section: 0)}))
+                collectionView.deleteItems(at: deletions.map({IndexPath(item: $0, section: indexOfProductsSection)}))
+                collectionView.insertItems(at: insertion.map({IndexPath(item: $0, section: indexOfProductsSection)}))
+                collectionView.reloadItems(at: modifications.map({IndexPath(item: $0, section: indexOfProductsSection)}))
             }, completion: nil)
             
         case .error(_):
@@ -137,34 +163,12 @@ extension ProductsCollectionViewController: ProductsControllerDelegate {
     }
     
     func fetchDidBegin(_ controller: ProductsController) {
-        
+        fetchInProgress = true
+        collectionView.reloadSections([indexOfLoadingSection])
     }
     
     func fetchDidEnd(_ controller: ProductsController, error: Error?) {
-        
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-
-extension ProductsCollectionViewController: UIViewControllerTransitioningDelegate {
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        guard let indexPath = collectionView.indexPathsForSelectedItems?.first,
-            let cell = collectionView.cellForItem(at: indexPath) as? ProductCollectionViewCell else {
-            return nil
-        }
-        
-        transition.originFrame = collectionView.convert(cell.frame, to: nil)
-        transition.presenting = true
-        
-        return transition
-    }
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        transition.presenting = false
-        
-        return transition
+        fetchInProgress = false
+        collectionView.reloadSections([indexOfLoadingSection])
     }
 }

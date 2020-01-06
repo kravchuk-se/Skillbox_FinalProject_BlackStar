@@ -11,7 +11,7 @@ import UIKit
 
 class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let duration = 0.3
+    let duration = 0.2
     var presenting = true
     var originFrame = CGRect.zero
     
@@ -56,7 +56,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(
             withDuration: duration,
             delay:0.0,
-            usingSpringWithDamping: 0.7,
+            usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.2,
             animations: {
                 productView.transform = self.presenting ? .identity : scaleTransform
