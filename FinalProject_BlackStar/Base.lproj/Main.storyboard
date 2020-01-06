@@ -22,7 +22,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDz-7Q-xqv">
                                         <rect key="frame" x="5" y="5" width="404" height="60"/>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Оформить заказ"/>
@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1850.7246376811595" y="985.71428571428567"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar Controller-->
         <scene sceneID="xHf-gB-7xc">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bRH-2N-ZVy" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bRH-2N-ZVy" customClass="CustomTabBarController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a74-il-LxH">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -427,7 +427,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="sHh-YQ-dbJ"/>
                     <connections>
-                        <segue destination="kOl-85-QJ4" kind="presentation" identifier="Select Product" modalPresentationStyle="fullScreen" id="Kk0-4Y-7ot"/>
+                        <segue destination="kOl-85-QJ4" kind="presentation" identifier="Select Product" modalPresentationStyle="currentContext" id="Kk0-4Y-7ot"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lf3-r3-g9x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

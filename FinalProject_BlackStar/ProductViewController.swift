@@ -86,6 +86,8 @@ class ProductViewController: UIViewController {
         recommendedProductsCollectionView.dataSource = self
         recommendedProductsCollectionView.delegate = self
         
+        addToCartButton.layer.cornerRadius = 5.0
+        
         updateUI()
     }
     
@@ -109,8 +111,6 @@ class ProductViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         updateImagesFrames()
-        
-        addToCartButton.layer.cornerRadius = 5.0
     }
     
     func initializeImageViews() {
@@ -236,6 +236,18 @@ class ProductViewController: UIViewController {
     @IBAction func addToCartButtonPressed(_ sender: UIButton) {
         if let offer = offer {
             Cart.current.addToCart(product, offer: offer)
+            
+//            UIView.animate(withDuration: 0.2, animations: {
+//                self.addToCartButton.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+//                self.addToCartButton.transform = .identity
+//            }, completion: { finished in
+//
+////                UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseInOut, animations: {
+////                    self.addToCartButton.transform = .identity
+////                }, completion: nil)
+//
+//            })
+            
         } else {
             performSegue(withIdentifier: "ChoseSize", sender: sender)
         }

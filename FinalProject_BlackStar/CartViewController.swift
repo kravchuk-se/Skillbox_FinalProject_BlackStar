@@ -20,12 +20,20 @@ class CartViewController: UIViewController {
         tableView.delegate = self
         
         commitOrderButton.layer.cornerRadius = 5.0
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateButtonState), name: Cart.cartUpdateNotification, object: nil)
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         tableView.reloadData()
+    }
+    
+    
+    @objc func updateButtonState() {
+        commitOrderButton.isEnabled = Cart.current.numberOfItems > 0
     }
     
     @IBAction func commitOrderButtonPressed(_ sender: UIButton) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QXe-St-1qa">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1381"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1391"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0z-ep-yh2">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="517.5"/>
@@ -130,12 +130,12 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ag1-gf-D7S">
-                                                <rect key="frame" x="18" y="698.5" width="378" height="50"/>
+                                                <rect key="frame" x="18" y="698.5" width="378" height="60"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="sdU-7I-WeR"/>
+                                                    <constraint firstAttribute="height" constant="60" id="sdU-7I-WeR"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Добавить в корзину"/>
                                                 <connections>
@@ -143,7 +143,7 @@
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qLQ-c1-BdU">
-                                                <rect key="frame" x="20" y="756.5" width="374" height="96.5"/>
+                                                <rect key="frame" x="20" y="766.5" width="374" height="96.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Артикул:">
@@ -418,7 +418,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXR-7A-LNf">
-                                                <rect key="frame" x="20" y="861" width="374" height="231.5"/>
+                                                <rect key="frame" x="20" y="871" width="374" height="231.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Мужской костюм спортивный BS STARS 2.0 вошел в коллекцию спортивной одежды от бренда Black Star Wear. Эта модель органично впишется в повседневную жизнь динамичных людей. В комплекте толстовка с капюшоном-хомутом и брюки зауженного кроя с припуском на линии шага. 
 Толстовка прямого, не сковывающего движений, силуэта снабжена вместительным карманом-кенгуру для хранения личных вещей. Вдоль горловины спереди оформлена вышивка со звездами в тон. На поясе, манжетах, голенище широкие фиксирующие трикотажные вставки. Верхнюю часть левой штанины и капюшон украшают вышивки с логотипом BS. Главное достоинство черного спортивного костюма – долговечный и комфортный материал, состоящий из натурального хлопка.
@@ -428,7 +428,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9yu-tm-XQy">
-                                                <rect key="frame" x="20" y="1100.5" width="374" height="280.5"/>
+                                                <rect key="frame" x="20" y="1110.5" width="374" height="280.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="9yu-tm-XQy" secondAttribute="height" multiplier="4/3" id="5Lb-4u-84d"/>
@@ -540,7 +540,7 @@
         <!--Modal Picker-->
         <scene sceneID="nkE-HD-hk7">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="fct-YC-FIb" customClass="ModalPicker" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="fct-YC-FIb" customClass="ModalPicker" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lti-Ex-QU6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

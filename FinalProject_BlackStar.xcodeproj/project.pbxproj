@@ -22,6 +22,7 @@
 		7C15CC02238A359A003C6EA8 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C15CC01238A359A003C6EA8 /* CategoriesTableViewController.swift */; };
 		7C15CC05238A4746003C6EA8 /* SubcategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C15CC04238A4746003C6EA8 /* SubcategoriesTableViewController.swift */; };
 		7C15CC07238A4936003C6EA8 /* ProductsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C15CC06238A4936003C6EA8 /* ProductsCollectionViewController.swift */; };
+		7C20D02C23C36256007540F7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C20D02B23C36256007540F7 /* CustomTabBarController.swift */; };
 		7C2DC5B023AA59A70042191D /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2DC5AF23AA59A70042191D /* PopAnimator.swift */; };
 		7C2DC5B323AA65DE0042191D /* ProductInCartRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2DC5B223AA65DE0042191D /* ProductInCartRealm.swift */; };
 		7C35090323A686CC00E03E7A /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35090223A686CC00E03E7A /* ImageProvider.swift */; };
@@ -89,6 +90,7 @@
 		7C15CC01238A359A003C6EA8 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 		7C15CC04238A4746003C6EA8 /* SubcategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoriesTableViewController.swift; sourceTree = "<group>"; };
 		7C15CC06238A4936003C6EA8 /* ProductsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewController.swift; sourceTree = "<group>"; };
+		7C20D02B23C36256007540F7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTabBarController.swift; path = FinalProject_BlackStar/Models/CustomTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		7C2DC5AF23AA59A70042191D /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopAnimator.swift; path = "View Controllers/PopAnimator.swift"; sourceTree = "<group>"; };
 		7C2DC5B223AA65DE0042191D /* ProductInCartRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInCartRealm.swift; sourceTree = "<group>"; };
 		7C35090223A686CC00E03E7A /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		7C15CC03238A359E003C6EA8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7C20D02B23C36256007540F7 /* CustomTabBarController.swift */,
 				7CF96C4023A662750030B229 /* ModalPicker.swift */,
 				7CF1FE8E23C1EC45003E9B9E /* ConfirmationViewController.swift */,
 				7C15CC01238A359A003C6EA8 /* CategoriesTableViewController.swift */,
@@ -392,6 +395,7 @@
 				7C15CBFE238A2E65003C6EA8 /* SubcategoryJSON.swift in Sources */,
 				7C15CBDE238A1765003C6EA8 /* AppDelegate.swift in Sources */,
 				7C15CC00238A32A5003C6EA8 /* ProductJSON.swift in Sources */,
+				7C20D02C23C36256007540F7 /* CustomTabBarController.swift in Sources */,
 				7C470A3D238D4AD300ED6B04 /* ProductsController.swift in Sources */,
 				7C470A38238D2A6E00ED6B04 /* ProductCollectionViewCell.swift in Sources */,
 				7C860CEC2393E56D00312950 /* SubcategoriesController.swift in Sources */,

@@ -14,8 +14,19 @@ typealias ProductInCartPresentation = (product: ProductPresentation, offer: Offe
 class Cart {
 
     static var current: Cart = Cart()
+    static let cartUpdateNotification = Notification.Name("Cart.CartUpdated")
     
-    private var products = Realm.main.objects(ProductInCartRealm.self)
+    private var products: Results<ProductInCartRealm>
+    private var token: NotificationToken?
+    
+    init() {
+        products = Realm.main.objects(ProductInCartRealm.self)
+        token = products.observe() { changes in
+            
+            NotificationCenter.default.post(Notification(name: Cart.cartUpdateNotification))
+            
+        }
+    }
     
     func addToCart(_ item: ProductPresentation, offer: OfferPresentation) {
         
@@ -54,10 +65,12 @@ class Cart {
         
     }
     
+    deinit {
+        print("the Cart was successfully deinitialized")
+    }
+    
 }
 
-struct ProductInCart {
-    let product: ProductPresentation
-    var offer: OfferPresentation
-    
+protocol CartObserver {
+    func didUpdateData(_ cart: Cart, changes: BatchUpdate)
 }

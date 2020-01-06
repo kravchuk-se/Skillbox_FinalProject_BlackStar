@@ -44,7 +44,7 @@ class TagView: UIView {
         
         tagLabel.textAlignment = .center
         tagLabel.baselineAdjustment = .alignCenters
-        tagLabel.font = UIFont.systemFont(ofSize: 8.0, weight: .light)
+        tagLabel.font = UIFont.systemFont(ofSize: 10.0, weight: .regular)
         tagLabel.textColor = .white
         tagLabel.adjustsFontSizeToFitWidth = true
         tagLabel.minimumScaleFactor = 0.1
