@@ -12,6 +12,8 @@ class ProductViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var mainScrollViewBottomConstraintToSafeArea: NSLayoutConstraint!
+    @IBOutlet weak var mainScrollViewTopConstraintToSafeArea: NSLayoutConstraint!
     
     @IBOutlet weak var imagesContainerView: UIView!
     @IBOutlet weak var imagesScrollView: UIScrollView!
@@ -48,10 +50,12 @@ class ProductViewController: UIViewController {
     private var imageViews: [String:UIImageView] = [:]
     private var currentImageIndex = 0
     
-    private var tabBarIsHidden = false {
+    private var tabBarAndNavBarAreHidden = false {
         didSet {
-            if oldValue != tabBarIsHidden {
-                changeTabBar(hidden: tabBarIsHidden, animated: true)
+            if oldValue != tabBarAndNavBarAreHidden {
+                changeNavBar(hidden: tabBarAndNavBarAreHidden, animated: true)
+                changeTabBar(hidden: tabBarAndNavBarAreHidden, animated: true)
+                
             }
         }
     }
@@ -67,7 +71,8 @@ class ProductViewController: UIViewController {
             forCellWithReuseIdentifier: ProductCollectionViewCell.reuseIdentifier)
         
         mainScrollView.delegate = self
-        mainScrollView.contentInsetAdjustmentBehavior = .never
+        
+        navigationItem.backBarButtonItem?.tintColor = .label
         
         linkedProductsController = LinkedProductsController(productID: product.id)
         
@@ -80,6 +85,7 @@ class ProductViewController: UIViewController {
         pageControl.numberOfPages = product.productImageURLs.count
         pageControl.currentPage = currentImageIndex
         
+        navigationItem.title = product.name
         productNameLabel.text = product.name
         productDescriptionTextView.text = product.description
         
@@ -113,8 +119,9 @@ class ProductViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        
+        changeNavBar(hidden: false, animated: true)
         changeTabBar(hidden: false, animated: true)
+        
     }
     
     // MARK: - Layout
@@ -192,26 +199,49 @@ class ProductViewController: UIViewController {
     }
     
     func changeTabBar(hidden:Bool, animated: Bool){
-        guard let tabBar = self.presentingViewController?.tabBarController?.tabBar else { return }
+        
+        guard let tabBar = self.tabBarController?.tabBar else { return }
         if tabBar.isHidden == hidden{ return }
+        
         let frame = tabBar.frame
         let offset = hidden ? frame.size.height : -frame.size.height
+        
         let duration:TimeInterval = (animated ? 0.5 : 0.0)
         tabBar.isHidden = false
 
+        mainScrollViewBottomConstraintToSafeArea.constant = hidden ? 44.0 : 0
+        
         UIView.animate(withDuration: duration, animations: {
             tabBar.frame = frame.offsetBy(dx: 0, dy: offset)
-            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
         }, completion: { (finished) in
             if finished { tabBar.isHidden = hidden }
         })
     }
     
-    // MARK: - Navigation
+    func changeNavBar(hidden: Bool, animated: Bool) {
+        
+        guard let navBar = self.navigationController?.navigationBar else { return }
+        if navBar.isHidden == hidden { return }
+        
+        let frame = navBar.frame
+        let offset = (frame.height + 44.0) * (hidden ? -1.0 : 1.0)
+        
+        let duration: TimeInterval = animated ? 0.5 : 0.0
+        navBar.isHidden = false
+        
+        mainScrollViewTopConstraintToSafeArea.constant = hidden ? -frame.height : 0
+        
+        UIView.animate(withDuration: duration, animations: {
+            navBar.frame = navBar.frame.offsetBy(dx: 0.0, dy: offset)
+            self.view.layoutIfNeeded()
+        }, completion: {finished in
+            if finished { navBar.isHidden = hidden }
+        })
     
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: completion)
     }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -280,9 +310,6 @@ class ProductViewController: UIViewController {
         scrollToCurrentImage()
     }
     
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
-    }
     @IBAction func selectColorButtonPressed(_ sender: Any) {
         if linkedProductsController.numberOfColors > 1 {
             performSegue(withIdentifier: "ChoseColor", sender: sender)
@@ -309,13 +336,19 @@ extension ProductViewController: UIScrollViewDelegate {
             
             let velocityY = scrollView.panGestureRecognizer.velocity(in: scrollView).y
             if velocityY < 0 {
-                tabBarIsHidden = true
+                tabBarAndNavBarAreHidden = true
             } else if velocityY > 0 {
-                tabBarIsHidden = false
+                tabBarAndNavBarAreHidden = false
             }
             
         default:
             break
+        }
+    }
+    
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        if scrollView == mainScrollView {
+            tabBarAndNavBarAreHidden = false
         }
     }
     

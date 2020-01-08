@@ -155,7 +155,7 @@
                                             <outlet property="oldPriceLabel" destination="hWq-dJ-n2N" id="zO4-uj-mqe"/>
                                             <outlet property="productImageView" destination="AO4-P5-kw2" id="yYh-MK-ToO"/>
                                             <outlet property="sizeLabel" destination="VZi-TL-AN7" id="TwP-2t-Z43"/>
-                                            <segue destination="kOl-85-QJ4" kind="presentation" identifier="Select Product" id="fTf-Si-TiV"/>
+                                            <segue destination="kOl-85-QJ4" kind="show" identifier="Select Product" id="fTf-Si-TiV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -427,7 +427,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="sHh-YQ-dbJ"/>
                     <connections>
-                        <segue destination="kOl-85-QJ4" kind="presentation" identifier="Select Product" id="Kk0-4Y-7ot"/>
+                        <segue destination="kOl-85-QJ4" kind="show" identifier="Select Product" id="Kk0-4Y-7ot"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lf3-r3-g9x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -475,7 +475,9 @@
         <!--ProductViewController-->
         <scene sceneID="nQ9-np-fQQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="Product" referencedIdentifier="ProductViewController" id="kOl-85-QJ4" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Product" referencedIdentifier="ProductViewController" id="kOl-85-QJ4" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="QTZ-Wp-hBp"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s72-a8-rL7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3853.6231884057975" y="343.52678571428572"/>

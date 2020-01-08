@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Product-->
+        <!--Product View Controller-->
         <scene sceneID="OoF-bZ-gsR">
             <objects>
-                <viewController storyboardIdentifier="ProductViewController" modalPresentationStyle="currentContext" id="q3J-Un-bBR" customClass="ProductViewController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductViewController" id="q3J-Un-bBR" customClass="ProductViewController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eAa-kR-ktJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -484,43 +484,24 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="1Sm-a0-LUU"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="rpM-EH-GGL"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAp-B9-Mom">
-                                <rect key="frame" x="20" y="52" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="86y-Fe-hAk"/>
-                                    <constraint firstAttribute="width" constant="60" id="G53-gG-soO"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <state key="normal" image="arrow.left" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                    </preferredSymbolConfiguration>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="q3J-Un-bBR" eventType="touchUpInside" id="usB-FL-0XC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="7p5-ee-eJc" firstAttribute="leading" secondItem="iYf-DP-Fms" secondAttribute="leading" id="B5A-T4-ak0"/>
-                            <constraint firstItem="7p5-ee-eJc" firstAttribute="bottom" secondItem="eAa-kR-ktJ" secondAttribute="bottom" constant="-34" id="MvE-bV-x3w"/>
-                            <constraint firstItem="OAp-B9-Mom" firstAttribute="top" secondItem="iYf-DP-Fms" secondAttribute="top" constant="8" id="RMQ-dY-cfh"/>
+                            <constraint firstItem="7p5-ee-eJc" firstAttribute="bottom" secondItem="iYf-DP-Fms" secondAttribute="bottom" id="MvE-bV-x3w"/>
                             <constraint firstItem="7p5-ee-eJc" firstAttribute="top" secondItem="iYf-DP-Fms" secondAttribute="top" id="U9W-T8-Y7Y"/>
-                            <constraint firstItem="OAp-B9-Mom" firstAttribute="leading" secondItem="iYf-DP-Fms" secondAttribute="leading" constant="20" id="qSd-G9-9eF"/>
                             <constraint firstItem="7p5-ee-eJc" firstAttribute="trailing" secondItem="iYf-DP-Fms" secondAttribute="trailing" id="vNx-zD-Sql"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iYf-DP-Fms"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Product" id="dXv-77-doq">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="cart.badge.plus" catalog="system" id="1Et-zM-SMd"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="addToCartButton" destination="Ag1-gf-D7S" id="oaY-HX-BTA"/>
                         <outlet property="colorPreview" destination="p1Y-m8-wpm" id="OQv-Hc-Y4O"/>
                         <outlet property="imagesContainerView" destination="W0z-ep-yh2" id="t8H-8g-vWi"/>
                         <outlet property="imagesScrollView" destination="ZFq-he-x1C" id="1CB-DW-bkK"/>
                         <outlet property="mainScrollView" destination="7p5-ee-eJc" id="LU4-tG-KDo"/>
+                        <outlet property="mainScrollViewBottomConstraintToSafeArea" destination="MvE-bV-x3w" id="fGs-41-bxd"/>
+                        <outlet property="mainScrollViewTopConstraintToSafeArea" destination="U9W-T8-Y7Y" id="OUb-CL-xFs"/>
                         <outlet property="pageControl" destination="uTL-mq-scw" id="Q5i-cF-HPk"/>
                         <outlet property="priceLabel" destination="uEc-1L-at0" id="mxn-JK-I1r"/>
                         <outlet property="productAttributesTextView" destination="qLQ-c1-BdU" id="ihS-eS-AGO"/>
@@ -630,8 +611,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="64" height="48"/>
-        <image name="cart.badge.plus" catalog="system" width="64" height="48"/>
         <image name="chevron.down" catalog="system" width="64" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
