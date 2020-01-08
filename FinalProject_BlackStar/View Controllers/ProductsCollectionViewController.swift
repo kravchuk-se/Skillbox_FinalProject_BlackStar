@@ -12,17 +12,31 @@ class ProductsCollectionViewController: UICollectionViewController {
 
     var productsController: ProductsController!
     var subcategory: Subcategory!
-    var fetchInProgress = false
+    private var fetchInProgress = false
     
     private let indexOfLoadingSection = 1
     private let indexOfProductsSection = 0
     
-    let transition = PopAnimator()
+    private var cellSizeV: CGSize = CGSize.zero
+    private var scale: CGFloat = 0.4 {
+        didSet {
+            collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    private let minScale: CGFloat = 0.6
+    private let maxScale: CGFloat = 2.0
+    private let cellAspectRatio: CGFloat = 1.625396825396825
+    
+    private var previousSizeClass: UIUserInterfaceSizeClass?
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scale = CGFloat(Settings.productsGalleryScaleFactor)
+        
+        calculateBaseCellSize()
         
         collectionView.register(
             UINib(nibName: ProductCollectionViewCell.nibName, bundle: nil),
@@ -43,6 +57,8 @@ class ProductsCollectionViewController: UICollectionViewController {
         super.viewDidDisappear(animated)
         
         productsController.stopObserve()
+        
+        Settings.productsGalleryScaleFactor = Float(scale)
     }
     
     // MARK: - View conroller events
@@ -53,7 +69,7 @@ class ProductsCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    // MARK: - Table view data source
+    // MARK: - Collection view data source
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -94,6 +110,42 @@ class ProductsCollectionViewController: UICollectionViewController {
         
     }
     
+    // MARK: - Actions
+    
+    @IBAction func pinchGestureTriggered(_ sender: UIPinchGestureRecognizer) {
+        
+        switch sender.state {
+        case .changed, .ended:
+            
+            let newScale = scale * sender.scale
+            
+            scale = min(max(minScale, newScale), maxScale)
+            
+            sender.scale = 1.0
+
+            
+        default:
+            break
+        }
+        
+    }
+    
+    // MARK: - Functions
+    
+    private func calculateBaseCellSize() {
+        let insets = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)!.sectionInset
+        let safeSize = collectionView.frame.inset(by: view.safeAreaInsets).inset(by: insets)
+        
+        
+        let cellWidth = (safeSize.width / 2 - 4)
+        let cellHeight = cellWidth * cellAspectRatio
+        
+        cellSizeV = CGSize(width: cellWidth,
+                           height: cellHeight)
+    }
+    
+    // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "Select Product":
@@ -115,15 +167,18 @@ class ProductsCollectionViewController: UICollectionViewController {
 extension ProductsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let insets = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)!.sectionInset
-        let safeSize = collectionView.frame.inset(by: view.safeAreaInsets).inset(by: insets)
+        if previousSizeClass != traitCollection.verticalSizeClass {
+            previousSizeClass = traitCollection.verticalSizeClass
+            calculateBaseCellSize()
+        }
         
         if traitCollection.verticalSizeClass == .compact {
-            return CGSize(width: (safeSize.width / 4) - 4,
+            let insets = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)!.sectionInset
+            let safeSize = collectionView.frame.inset(by: view.safeAreaInsets).inset(by: insets)
+            return CGSize(width: safeSize.height / cellAspectRatio,
                           height: safeSize.height)
         } else {
-            return CGSize(width: (safeSize.width / 2) - 4,
-                          height: (safeSize.height / 2))
+            return cellSizeV.scaled(by: scale)
         }
     }
     

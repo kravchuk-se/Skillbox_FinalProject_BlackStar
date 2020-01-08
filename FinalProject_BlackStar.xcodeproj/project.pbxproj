@@ -43,6 +43,8 @@
 		7C7AD2B523C288BF0041C85C /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7AD2B323C288BF0041C85C /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C860CEC2393E56D00312950 /* SubcategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C860CEB2393E56D00312950 /* SubcategoriesController.swift */; };
 		7C860CEE2393E5F400312950 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C860CED2393E5F400312950 /* Subcategory.swift */; };
+		7CADEB0523C62193007DAE2C /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CADEB0423C62193007DAE2C /* CGSize+.swift */; };
+		7CADEB0723C627C6007DAE2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CADEB0623C627C6007DAE2C /* Settings.swift */; };
 		7CB888FE23936D8500C9B7A4 /* ColorPreviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */; };
 		7CB8890023936D9B00C9B7A4 /* ColorPreviewButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB888FF23936D9B00C9B7A4 /* ColorPreviewButton.xib */; };
 		7CC19A82239CCE3900F409F6 /* ProductRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC19A81239CCE3900F409F6 /* ProductRealm.swift */; };
@@ -110,6 +112,8 @@
 		7C7AD2B323C288BF0041C85C /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		7C860CEB2393E56D00312950 /* SubcategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoriesController.swift; sourceTree = "<group>"; };
 		7C860CED2393E5F400312950 /* Subcategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
+		7CADEB0423C62193007DAE2C /* CGSize+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = SOURCE_ROOT; };
+		7CADEB0623C627C6007DAE2C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = "View Controllers/Settings.swift"; sourceTree = "<group>"; };
 		7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewButton.swift; sourceTree = "<group>"; };
 		7CB888FF23936D9B00C9B7A4 /* ColorPreviewButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPreviewButton.xib; sourceTree = "<group>"; };
 		7CC19A81239CCE3900F409F6 /* ProductRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRealm.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 		7C15CBDC238A1765003C6EA8 /* FinalProject_BlackStar */ = {
 			isa = PBXGroup;
 			children = (
+				7CADEB0623C627C6007DAE2C /* Settings.swift */,
+				7CADEB0423C62193007DAE2C /* CGSize+.swift */,
 				7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */,
 				7C2DC5AF23AA59A70042191D /* PopAnimator.swift */,
 				7CE871E22393D0A800881D47 /* Realm+.swift */,
@@ -394,6 +400,7 @@
 				7C5326E8239244DB007EB82B /* BatchUpdate.swift in Sources */,
 				7C15CBFE238A2E65003C6EA8 /* SubcategoryJSON.swift in Sources */,
 				7C15CBDE238A1765003C6EA8 /* AppDelegate.swift in Sources */,
+				7CADEB0523C62193007DAE2C /* CGSize+.swift in Sources */,
 				7C15CC00238A32A5003C6EA8 /* ProductJSON.swift in Sources */,
 				7C20D02C23C36256007540F7 /* CustomTabBarController.swift in Sources */,
 				7C470A3D238D4AD300ED6B04 /* ProductsController.swift in Sources */,
@@ -402,6 +409,7 @@
 				7CE871DD2393B07400881D47 /* SubcategoryRealm.swift in Sources */,
 				7C15CC02238A359A003C6EA8 /* CategoriesTableViewController.swift in Sources */,
 				7C15CC07238A4936003C6EA8 /* ProductsCollectionViewController.swift in Sources */,
+				7CADEB0723C627C6007DAE2C /* Settings.swift in Sources */,
 				7C5326E22392336D007EB82B /* CartItemTableViewCell.swift in Sources */,
 				7CF1FE8F23C1EC45003E9B9E /* ConfirmationViewController.swift in Sources */,
 				7C5326EC239252DA007EB82B /* TagView.swift in Sources */,
