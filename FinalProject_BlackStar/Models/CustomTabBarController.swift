@@ -15,6 +15,9 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tabBar.tintColor = .systemRed
+        tabBar.unselectedItemTintColor = .label
+        
         cartTabBarItem = viewControllers![1].tabBarItem
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTabBarItem), name: Cart.cartUpdateNotification, object: nil)
