@@ -10,6 +10,12 @@ import UIKit
 
 class ProductsCollectionViewController: UICollectionViewController {
 
+    private enum LayoutSizeClass: Int {
+        case large = 1
+        case medium = 2
+        case small = 3
+    }
+    
     var productsController: ProductsController!
     var subcategory: Subcategory!
     private var fetchInProgress = false
@@ -17,26 +23,20 @@ class ProductsCollectionViewController: UICollectionViewController {
     private let indexOfLoadingSection = 1
     private let indexOfProductsSection = 0
     
-    private var cellSizeV: CGSize = CGSize.zero
-    private var scale: CGFloat = 0.4 {
+    private var currentLayout: LayoutSizeClass = .medium {
         didSet {
-            collectionView.collectionViewLayout.invalidateLayout()
+            updateCollectionViewLayout()
         }
     }
-    private let minScale: CGFloat = 0.6
-    private let maxScale: CGFloat = 2.0
-    private let cellAspectRatio: CGFloat = 1.625396825396825
     
-    private var previousSizeClass: UIUserInterfaceSizeClass?
+    private let cellAspectRatio: CGFloat = 1.625396825396825
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scale = CGFloat(Settings.productsGalleryScaleFactor)
-        
-        calculateBaseCellSize()
+        currentLayout = LayoutSizeClass(rawValue: Settings.productsGallerySizeClass) ?? .medium
         
         collectionView.register(
             UINib(nibName: ProductCollectionViewCell.nibName, bundle: nil),
@@ -45,6 +45,12 @@ class ProductsCollectionViewController: UICollectionViewController {
         productsController = ProductsController(subcategory: subcategory)
         productsController.delegate = self
         productsController.fetch()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateCollectionViewLayout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +64,7 @@ class ProductsCollectionViewController: UICollectionViewController {
         
         productsController.stopObserve()
         
-        Settings.productsGalleryScaleFactor = Float(scale)
+        Settings.productsGallerySizeClass = currentLayout.rawValue
     }
     
     // MARK: - View conroller events
@@ -66,7 +72,9 @@ class ProductsCollectionViewController: UICollectionViewController {
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         
-        collectionView.collectionViewLayout.invalidateLayout()
+        coordinator.animate(alongsideTransition: nil, completion: { _ in
+            self.updateCollectionViewLayout()
+        })
     }
     
     // MARK: - Collection view data source
@@ -92,9 +100,7 @@ class ProductsCollectionViewController: UICollectionViewController {
         
         if indexPath.section == indexOfLoadingSection {
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoadingCell", for: indexPath)
-            
-            return cell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "LoadingCell", for: indexPath)
             
         } else {
             
@@ -110,20 +116,25 @@ class ProductsCollectionViewController: UICollectionViewController {
         
     }
     
+    // MARK: - Collection view delegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == indexOfProductsSection {
+            performSegue(withIdentifier: "Select Product", sender: collectionView.cellForItem(at: indexPath))
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func pinchGestureTriggered(_ sender: UIPinchGestureRecognizer) {
         
         switch sender.state {
-        case .changed, .ended:
-            
-            let newScale = scale * sender.scale
-            
-            scale = min(max(minScale, newScale), maxScale)
-            
-            sender.scale = 1.0
-
-            
+        case .ended:
+            if sender.scale > 1.0 {
+                increaseCellSize()
+            } else if sender.scale < 1.0 {
+                decreaseCellSize()
+            }
         default:
             break
         }
@@ -132,16 +143,57 @@ class ProductsCollectionViewController: UICollectionViewController {
     
     // MARK: - Functions
     
-    private func calculateBaseCellSize() {
-        let insets = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)!.sectionInset
-        let safeSize = collectionView.frame.inset(by: view.safeAreaInsets).inset(by: insets)
+    private func updateCollectionViewLayout() {
+        let sectionInsets = UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0)
+        let safeSize = collectionView.frame.inset(by: view.safeAreaInsets)
+        let minimumInteritemSpacing: CGFloat = 5.0
         
+        let newLayout = UICollectionViewFlowLayout()
+        newLayout.sectionInset = sectionInsets
+        newLayout.minimumInteritemSpacing = minimumInteritemSpacing
         
-        let cellWidth = (safeSize.width / 2 - 4)
-        let cellHeight = cellWidth * cellAspectRatio
+        if traitCollection.verticalSizeClass == .compact {
+            
+            let cellHeight = safeSize.height
+            let cellWidth = safeSize.height / cellAspectRatio
+            
+            newLayout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+            
+            collectionView.setCollectionViewLayout(newLayout, animated: true)
+            
+        } else {
         
-        cellSizeV = CGSize(width: cellWidth,
-                           height: cellHeight)
+            let numberOfColumns = currentLayout.rawValue
+            
+            let cellWidth = (safeSize.width - (sectionInsets.left + sectionInsets.right) - (minimumInteritemSpacing * CGFloat(numberOfColumns - 1))) / CGFloat(numberOfColumns)
+            let cellHeight = cellWidth * cellAspectRatio
+         
+            newLayout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+            
+            collectionView.setCollectionViewLayout(newLayout, animated: true)
+        }
+    }
+    
+    private func increaseCellSize() {
+        switch currentLayout {
+        case .large:
+            break
+        case .medium:
+            currentLayout = .large
+        case .small:
+            currentLayout = .medium
+        }
+    }
+    
+    private func decreaseCellSize() {
+        switch currentLayout {
+        case .large:
+            currentLayout = .medium
+        case .medium:
+            currentLayout = .small
+        case .small:
+            break
+        }
     }
     
     // MARK: - Navigation
@@ -162,31 +214,6 @@ class ProductsCollectionViewController: UICollectionViewController {
         }
     }
     
-}
-
-extension ProductsCollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        if previousSizeClass != traitCollection.verticalSizeClass {
-            previousSizeClass = traitCollection.verticalSizeClass
-            calculateBaseCellSize()
-        }
-        
-        if traitCollection.verticalSizeClass == .compact {
-            let insets = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)!.sectionInset
-            let safeSize = collectionView.frame.inset(by: view.safeAreaInsets).inset(by: insets)
-            return CGSize(width: safeSize.height / cellAspectRatio,
-                          height: safeSize.height)
-        } else {
-            return cellSizeV.scaled(by: scale)
-        }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == indexOfProductsSection {
-            performSegue(withIdentifier: "Select Product", sender: collectionView.cellForItem(at: indexPath))
-        }
-    }
 }
 
 extension ProductsCollectionViewController: ProductsControllerDelegate {

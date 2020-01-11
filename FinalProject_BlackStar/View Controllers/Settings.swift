@@ -9,14 +9,13 @@
 import Foundation
 
 struct Settings {
-    static var productsGalleryScaleFactor: Float {
+    static var productsGallerySizeClass: Int {
         get {
-            let value = UserDefaults.standard.float(forKey: scaleFactorKey)
-            return value == 0 ? 1 : value
+            return UserDefaults.standard.integer(forKey: sizeClassKey)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: scaleFactorKey)
+            UserDefaults.standard.set(newValue, forKey: sizeClassKey)
         }
     }
-    private static let scaleFactorKey = "Settings.productsGalleryScaleFactor"
+    private static let sizeClassKey = "Settings.productsGallerySizeClass"
 }
