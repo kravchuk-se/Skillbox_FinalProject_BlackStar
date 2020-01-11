@@ -107,23 +107,23 @@
 		7C5326E12392336D007EB82B /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartItemTableViewCell.swift; path = FinalProject_BlackStar/CartItemTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		7C5326E523923488007EB82B /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7C5326E7239244DB007EB82B /* BatchUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchUpdate.swift; sourceTree = "<group>"; };
-		7C5326E92392450E007EB82B /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+.swift"; path = "View Controllers/UIViewController+.swift"; sourceTree = "<group>"; };
+		7C5326E92392450E007EB82B /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		7C5326EB239252DA007EB82B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagView.swift; path = FinalProject_BlackStar/Models/TagView.swift; sourceTree = SOURCE_ROOT; };
 		7C7AD2B323C288BF0041C85C /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		7C860CEB2393E56D00312950 /* SubcategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoriesController.swift; sourceTree = "<group>"; };
 		7C860CED2393E5F400312950 /* Subcategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
-		7CADEB0423C62193007DAE2C /* CGSize+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = SOURCE_ROOT; };
+		7CADEB0423C62193007DAE2C /* CGSize+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CGSize+.swift"; path = "FinalProject_BlackStar/Extensions/CGSize+.swift"; sourceTree = SOURCE_ROOT; };
 		7CADEB0623C627C6007DAE2C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = "View Controllers/Settings.swift"; sourceTree = "<group>"; };
-		7CADEB0823C9F4DB007DAE2C /* UITabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+.swift"; sourceTree = SOURCE_ROOT; };
+		7CADEB0823C9F4DB007DAE2C /* UITabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UITabBar+.swift"; path = "FinalProject_BlackStar/Extensions/UITabBar+.swift"; sourceTree = SOURCE_ROOT; };
 		7CADEB0A23CA153F007DAE2C /* CGRect+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+.swift"; sourceTree = "<group>"; };
 		7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewButton.swift; sourceTree = "<group>"; };
 		7CB888FF23936D9B00C9B7A4 /* ColorPreviewButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPreviewButton.xib; sourceTree = "<group>"; };
 		7CC19A81239CCE3900F409F6 /* ProductRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRealm.swift; sourceTree = "<group>"; };
-		7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlackStarAPI.swift; path = "Model controllers/BlackStarAPI.swift"; sourceTree = "<group>"; };
+		7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackStarAPI.swift; sourceTree = "<group>"; };
 		7CE871D82393AD7600881D47 /* CategoryRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRealm.swift; sourceTree = "<group>"; };
 		7CE871DA2393ADC200881D47 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7CE871DC2393B07400881D47 /* SubcategoryRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryRealm.swift; sourceTree = "<group>"; };
-		7CE871E22393D0A800881D47 /* Realm+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Realm+.swift"; path = "Supporting files/Realm+.swift"; sourceTree = "<group>"; };
+		7CE871E22393D0A800881D47 /* Realm+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+.swift"; sourceTree = "<group>"; };
 		7CF1FE8E23C1EC45003E9B9E /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		7CF96C3923A5B5350030B229 /* ProductPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresentation.swift; sourceTree = "<group>"; };
 		7CF96C3B23A611AC0030B229 /* LinkedProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedProductsController.swift; sourceTree = "<group>"; };
@@ -165,22 +165,15 @@
 		7C15CBDC238A1765003C6EA8 /* FinalProject_BlackStar */ = {
 			isa = PBXGroup;
 			children = (
-				7CADEB0823C9F4DB007DAE2C /* UITabBar+.swift */,
-				7CADEB0623C627C6007DAE2C /* Settings.swift */,
-				7CADEB0423C62193007DAE2C /* CGSize+.swift */,
-				7CADEB0A23CA153F007DAE2C /* CGRect+.swift */,
-				7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */,
-				7CE871E22393D0A800881D47 /* Realm+.swift */,
-				7C5326E92392450E007EB82B /* UIViewController+.swift */,
+				7CADEB0C23CA2DD0007DAE2C /* Extensions */,
+				7CADEB0D23CA311A007DAE2C /* Network */,
 				7C5326E7239244DB007EB82B /* BatchUpdate.swift */,
-				7C35090223A686CC00E03E7A /* ImageProvider.swift */,
+				7CADEB0623C627C6007DAE2C /* Settings.swift */,
 				7C470A3A238D4A3900ED6B04 /* Model controllers */,
 				7C15CBFC238A29B7003C6EA8 /* Models */,
 				7C470A3B238D4A5900ED6B04 /* Supporting files */,
 				7C15CC03238A359E003C6EA8 /* View Controllers */,
 				7C470A39238D2A7500ED6B04 /* Views */,
-				7C15CBE3238A1765003C6EA8 /* Main.storyboard */,
-				7CF96C3D23A65FB60030B229 /* Product.storyboard */,
 				7C15CBEB238A176A003C6EA8 /* Info.plist */,
 			);
 			path = FinalProject_BlackStar;
@@ -235,6 +228,8 @@
 		7C470A39238D2A7500ED6B04 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7C15CBE3238A1765003C6EA8 /* Main.storyboard */,
+				7CF96C3D23A65FB60030B229 /* Product.storyboard */,
 				7C5326EB239252DA007EB82B /* TagView.swift */,
 				7C5326E12392336D007EB82B /* CartItemTableViewCell.swift */,
 				7CB888FD23936D8500C9B7A4 /* ColorPreviewButton.swift */,
@@ -266,6 +261,27 @@
 				7C15CBE8238A176A003C6EA8 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		7CADEB0C23CA2DD0007DAE2C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7CADEB0823C9F4DB007DAE2C /* UITabBar+.swift */,
+				7CADEB0423C62193007DAE2C /* CGSize+.swift */,
+				7CADEB0A23CA153F007DAE2C /* CGRect+.swift */,
+				7CE871E22393D0A800881D47 /* Realm+.swift */,
+				7C5326E92392450E007EB82B /* UIViewController+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7CADEB0D23CA311A007DAE2C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5D58823AF91E500D71602 /* BlackStarAPI.swift */,
+				7C35090223A686CC00E03E7A /* ImageProvider.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		7CE871E62393E47200881D47 /* Category */ = {
