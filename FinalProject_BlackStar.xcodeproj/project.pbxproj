@@ -196,7 +196,6 @@
 				7CE871E82393E49500881D47 /* Product */,
 				7CE871E62393E47200881D47 /* Category */,
 				7CE871E72393E48800881D47 /* Subcategory */,
-				7C5326E523923488007EB82B /* Cart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,6 +247,7 @@
 				7C860CEB2393E56D00312950 /* SubcategoriesController.swift */,
 				7C470A3C238D4AD300ED6B04 /* ProductsController.swift */,
 				7CF96C3B23A611AC0030B229 /* LinkedProductsController.swift */,
+				7C5326E523923488007EB82B /* Cart.swift */,
 			);
 			path = "Model controllers";
 			sourceTree = "<group>";
