@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Product View Controller-->
+        <!--Title-->
         <scene sceneID="OoF-bZ-gsR">
             <objects>
                 <viewController storyboardIdentifier="ProductViewController" id="q3J-Un-bBR" customClass="ProductViewController" customModule="FinalProject_BlackStar" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7p5-ee-eJc">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QXe-St-1qa">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1391"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1425.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0z-ep-yh2">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="517.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="552"/>
                                                 <subviews>
                                                     <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-he-x1C">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
@@ -38,7 +38,7 @@
                                                     <constraint firstItem="ZFq-he-x1C" firstAttribute="top" secondItem="W0z-ep-yh2" secondAttribute="top" id="6te-ui-NQy"/>
                                                     <constraint firstAttribute="bottom" secondItem="ZFq-he-x1C" secondAttribute="bottom" id="KJB-G2-03J"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZFq-he-x1C" secondAttribute="trailing" id="iia-dk-pzg"/>
-                                                    <constraint firstAttribute="width" secondItem="W0z-ep-yh2" secondAttribute="height" multiplier="0.8" id="pmC-pN-OTb"/>
+                                                    <constraint firstAttribute="width" secondItem="W0z-ep-yh2" secondAttribute="height" multiplier="480:640" id="pmC-pN-OTb"/>
                                                     <constraint firstItem="ZFq-he-x1C" firstAttribute="leading" secondItem="W0z-ep-yh2" secondAttribute="leading" id="qHq-QU-GJ0"/>
                                                 </constraints>
                                                 <connections>
@@ -46,7 +46,7 @@
                                                 </connections>
                                             </view>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uTL-mq-scw">
-                                                <rect key="frame" x="187.5" y="525.5" width="39" height="37"/>
+                                                <rect key="frame" x="187.5" y="560" width="39" height="37"/>
                                                 <color key="pageIndicatorTintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <connections>
@@ -54,7 +54,7 @@
                                                 </connections>
                                             </pageControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-VB-a9q">
-                                                <rect key="frame" x="20" y="570.5" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="605" width="374" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EzM-ah-w5v">
                                                         <rect key="frame" x="0.0" y="0.0" width="324" height="41"/>
@@ -83,14 +83,14 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RD8-aQ-5Jr">
-                                                <rect key="frame" x="10" y="628.5" width="394" height="1"/>
+                                                <rect key="frame" x="10" y="663" width="394" height="1"/>
                                                 <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="uw5-ut-cuK"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qYK-nd-8zS">
-                                                <rect key="frame" x="20" y="637.5" width="374" height="44"/>
+                                                <rect key="frame" x="20" y="672" width="374" height="44"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1Y-m8-wpm" customClass="ColorPreviewButton" customModule="FinalProject_BlackStar" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="187" height="44"/>
@@ -123,27 +123,27 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qib-1T-vON">
-                                                <rect key="frame" x="10" y="689.5" width="394" height="1"/>
+                                                <rect key="frame" x="10" y="724" width="394" height="1"/>
                                                 <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="oOT-1d-sXo"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ag1-gf-D7S">
-                                                <rect key="frame" x="18" y="698.5" width="378" height="60"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ag1-gf-D7S">
+                                                <rect key="frame" x="18" y="733" width="378" height="60"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="sdU-7I-WeR"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Добавить в корзину"/>
+                                                <state key="normal" title="Добавить в корзину" image="cart.badge.plus" catalog="system"/>
                                                 <connections>
                                                     <action selector="addToCartButtonPressed:" destination="q3J-Un-bBR" eventType="touchUpInside" id="wRx-FC-t1E"/>
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qLQ-c1-BdU">
-                                                <rect key="frame" x="20" y="766.5" width="374" height="96.5"/>
+                                                <rect key="frame" x="20" y="801" width="374" height="96.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Артикул:">
@@ -418,7 +418,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXR-7A-LNf">
-                                                <rect key="frame" x="20" y="871" width="374" height="231.5"/>
+                                                <rect key="frame" x="20" y="905.5" width="374" height="231.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Мужской костюм спортивный BS STARS 2.0 вошел в коллекцию спортивной одежды от бренда Black Star Wear. Эта модель органично впишется в повседневную жизнь динамичных людей. В комплекте толстовка с капюшоном-хомутом и брюки зауженного кроя с припуском на линии шага. 
 Толстовка прямого, не сковывающего движений, силуэта снабжена вместительным карманом-кенгуру для хранения личных вещей. Вдоль горловины спереди оформлена вышивка со звездами в тон. На поясе, манжетах, голенище широкие фиксирующие трикотажные вставки. Верхнюю часть левой штанины и капюшон украшают вышивки с логотипом BS. Главное достоинство черного спортивного костюма – долговечный и комфортный материал, состоящий из натурального хлопка.
@@ -428,7 +428,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9yu-tm-XQy">
-                                                <rect key="frame" x="20" y="1110.5" width="374" height="280.5"/>
+                                                <rect key="frame" x="20" y="1145" width="374" height="280.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="9yu-tm-XQy" secondAttribute="height" multiplier="4/3" id="5Lb-4u-84d"/>
@@ -494,6 +494,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iYf-DP-Fms"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="8PH-Tm-4B8">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="HSf-gf-FUo">
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="addToCartButton" destination="Ag1-gf-D7S" id="oaY-HX-BTA"/>
                         <outlet property="colorPreview" destination="p1Y-m8-wpm" id="OQv-Hc-Y4O"/>
@@ -611,6 +617,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cart.badge.plus" catalog="system" width="64" height="48"/>
         <image name="chevron.down" catalog="system" width="64" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>

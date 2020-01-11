@@ -18,29 +18,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psU-CJ-0xh">
-                                <rect key="frame" x="0.0" y="743" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="678" width="414" height="135"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDz-7Q-xqv">
-                                        <rect key="frame" x="5" y="5" width="404" height="60"/>
-                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Оформить заказ"/>
-                                        <connections>
-                                            <action selector="commitOrderButtonPressed:" destination="eO8-QA-b7J" eventType="touchUpInside" id="y3O-tb-SyQ"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rsZ-wj-QkN">
+                                        <rect key="frame" x="5" y="5" width="404" height="125"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9O3-z3-Yvs">
+                                                <rect key="frame" x="0.0" y="0.0" width="404" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="yPh-95-8Cx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Очистить корзину"/>
+                                                <connections>
+                                                    <action selector="clearCart:" destination="eO8-QA-b7J" eventType="touchUpInside" id="tPI-S6-tHl"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDz-7Q-xqv">
+                                                <rect key="frame" x="0.0" y="65" width="404" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Jtd-pi-51m"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Оформить заказ"/>
+                                                <connections>
+                                                    <action selector="commitOrderButtonPressed:" destination="eO8-QA-b7J" eventType="touchUpInside" id="y3O-tb-SyQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="6Yl-gB-RD4"/>
-                                    <constraint firstItem="eDz-7Q-xqv" firstAttribute="leading" secondItem="psU-CJ-0xh" secondAttribute="leading" constant="5" id="7NA-eR-rWM"/>
-                                    <constraint firstItem="eDz-7Q-xqv" firstAttribute="top" secondItem="psU-CJ-0xh" secondAttribute="top" constant="5" id="FDD-cd-rpi"/>
-                                    <constraint firstAttribute="bottom" secondItem="eDz-7Q-xqv" secondAttribute="bottom" constant="5" id="T7N-wm-UYN"/>
-                                    <constraint firstAttribute="trailing" secondItem="eDz-7Q-xqv" secondAttribute="trailing" constant="5" id="Zzu-i9-ziK"/>
+                                    <constraint firstItem="rsZ-wj-QkN" firstAttribute="top" secondItem="psU-CJ-0xh" secondAttribute="top" constant="5" id="EsX-By-KKy"/>
+                                    <constraint firstAttribute="bottom" secondItem="rsZ-wj-QkN" secondAttribute="bottom" constant="5" id="cz2-7U-lAQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="rsZ-wj-QkN" secondAttribute="trailing" constant="5" id="feL-gh-GLp"/>
+                                    <constraint firstItem="rsZ-wj-QkN" firstAttribute="leading" secondItem="psU-CJ-0xh" secondAttribute="leading" constant="5" id="nxw-Z4-mm3"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="peo-0U-QeK">
-                                <rect key="frame" x="0.0" y="88" width="414" height="655"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="590"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="GbK-xR-pF7">
                                     <rect key="frame" x="0.0" y="256" width="414" height="44"/>
@@ -496,6 +516,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Kk0-4Y-7ot"/>
+        <segue reference="fTf-Si-TiV"/>
     </inferredMetricsTieBreakers>
 </document>

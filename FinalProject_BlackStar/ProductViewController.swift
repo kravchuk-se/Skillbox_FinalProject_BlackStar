@@ -241,6 +241,32 @@ class ProductViewController: UIViewController {
     
     }
     
+    private func animateAddToCartTap() {
+        addToCartButton.transform = .init(scaleX: 1.05, y: 1.05)
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            self.addToCartButton.transform = .identity
+        }, completion: nil)
+    }
+    
+    private func animateItemFallingIntoCart() {
+        let targetFrame = view.convert( tabBarController!.tabBar.getFrameForTabImageAt(index: 1)!, from: tabBarController!.tabBar)
+        
+        let flyingImageView = imagesContainerView.snapshotView(afterScreenUpdates: false)!
+        
+        view.addSubview(flyingImageView)
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseIn, animations: {
+            
+            flyingImageView.transform = .init(scaleX: 0.5, y: 0.5)
+            flyingImageView.center = targetFrame.center
+            flyingImageView.alpha = 0.0
+            
+            
+        }) { (finished) in
+            flyingImageView.removeFromSuperview()
+        }
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -300,6 +326,10 @@ class ProductViewController: UIViewController {
     @IBAction func addToCartButtonPressed(_ sender: UIButton) {
         if let offer = offer {
             Cart.current.addToCart(product, offer: offer)
+            
+            animateAddToCartTap()
+            animateItemFallingIntoCart()
+            
         } else {
             performSegue(withIdentifier: "ChoseSize", sender: sender)
         }

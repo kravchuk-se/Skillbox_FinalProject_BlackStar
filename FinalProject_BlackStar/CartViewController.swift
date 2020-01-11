@@ -47,6 +47,14 @@ class CartViewController: UIViewController {
     }
     
 
+    @IBAction func clearCart(_ sender: UIButton) {
+        
+        while Cart.current.numberOfItems > 0 {
+            Cart.current.remove(at: Cart.current.numberOfItems - 1)
+        }
+        
+        tableView.reloadData()
+    }
     
    
     
