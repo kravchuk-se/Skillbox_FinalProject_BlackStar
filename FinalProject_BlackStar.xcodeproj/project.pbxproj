@@ -128,7 +128,7 @@
 		7CF96C3923A5B5350030B229 /* ProductPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresentation.swift; sourceTree = "<group>"; };
 		7CF96C3B23A611AC0030B229 /* LinkedProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedProductsController.swift; sourceTree = "<group>"; };
 		7CF96C3E23A65FB60030B229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Product.storyboard; sourceTree = "<group>"; };
-		7CF96C4023A662750030B229 /* ModalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModalPicker.swift; path = FinalProject_BlackStar/ModalPicker.swift; sourceTree = SOURCE_ROOT; };
+		7CF96C4023A662750030B229 /* ModalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModalPicker.swift; path = "FinalProject_BlackStar/View Controllers/Reusable/ModalPicker.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,15 +203,13 @@
 		7C15CC03238A359E003C6EA8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CADEB0E23CA3539007DAE2C /* Reusable */,
 				7C20D02B23C36256007540F7 /* CustomTabBarController.swift */,
-				7CF96C4023A662750030B229 /* ModalPicker.swift */,
-				7CF1FE8E23C1EC45003E9B9E /* ConfirmationViewController.swift */,
 				7C15CC01238A359A003C6EA8 /* CategoriesTableViewController.swift */,
 				7C15CC04238A4746003C6EA8 /* SubcategoriesTableViewController.swift */,
 				7C15CC06238A4936003C6EA8 /* ProductsCollectionViewController.swift */,
 				7C470A2F238AA3BD00ED6B04 /* ProductViewController.swift */,
 				7C470A2D238A76CE00ED6B04 /* CartViewController.swift */,
-				7C36ADAD23C2704600B1B30A /* LoadingViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -282,6 +280,16 @@
 				7C35090223A686CC00E03E7A /* ImageProvider.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		7CADEB0E23CA3539007DAE2C /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				7C36ADAD23C2704600B1B30A /* LoadingViewController.swift */,
+				7CF96C4023A662750030B229 /* ModalPicker.swift */,
+				7CF1FE8E23C1EC45003E9B9E /* ConfirmationViewController.swift */,
+			);
+			path = Reusable;
 			sourceTree = "<group>";
 		};
 		7CE871E62393E47200881D47 /* Category */ = {

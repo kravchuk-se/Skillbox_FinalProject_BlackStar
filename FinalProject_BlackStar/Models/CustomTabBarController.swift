@@ -10,8 +10,8 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     
-    var cartTabBarItem: UITabBarItem!
-    var previousCount: Int?
+    private var cartTabBarItem: UITabBarItem!
+    private var previousCount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,25 +26,13 @@ class CustomTabBarController: UITabBarController {
         updateTabBarItem()
     }
 
-    func animateAddNewItem() {
-        
+    private func animateAddNewItem() {
         if let image = tabBar.getImageViewForTabAt(index: 1) {
-            
-//            UIView.animate(withDuration: 0.1, animations: {
-                
-                image.transform = image.transform.rotated(by: .pi * (15/180))
-//            }, completion: { finished in
-                
-                UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                    
-                    image.transform = .identity
-                    
-                }, completion: nil)
-                
-//            })
-            
+            image.transform = image.transform.rotated(by: .pi * (15/180))
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                image.transform = .identity
+            }, completion: nil)
         }
-        
     }
     
     @objc func updateTabBarItem() {
