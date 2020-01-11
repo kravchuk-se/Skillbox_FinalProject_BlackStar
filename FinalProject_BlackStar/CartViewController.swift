@@ -12,29 +12,60 @@ class CartViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commitOrderButton: UIButton!
+    @IBOutlet weak var clearCartButton: UIButton!
+    @IBOutlet weak var totalSumLabel: UILabel!
+    @IBOutlet weak var totalSumStackView: UIStackView!
+    @IBOutlet weak var emptyCartPlaceholderLabel: UILabel!
+    
+    var cart: Cart!
+    
+    // MARK: - View controller's life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cart = Cart.current
+        
         tableView.dataSource = self
         tableView.delegate = self
         
+        clearCartButton.layer.cornerRadius = 5.0
         commitOrderButton.layer.cornerRadius = 5.0
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateButtonState), name: Cart.cartUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUI), name: Cart.cartUpdateNotification, object: nil)
         
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         tableView.reloadData()
+        updateUI()
     }
     
     
-    @objc func updateButtonState() {
-        commitOrderButton.isEnabled = Cart.current.numberOfItems > 0
+    // MARK: - Functions
+    
+    @objc private func updateUI() {
+        updateButtonsState()
+        updateTotalLabel()
+        
+        emptyCartPlaceholderLabel.isHidden = !cart.isEmpty
+        totalSumStackView.isHidden = cart.isEmpty
     }
+    
+    private func updateTotalLabel() {
+        totalSumLabel.text = ProductPresentation.priceFormatted(cart.total)
+    }
+    
+    func updateButtonsState() {
+        clearCartButton.isEnabled = !cart.isEmpty
+        commitOrderButton.isEnabled = !cart.isEmpty
+    }
+    
+    // MARK: - Actions
+    
+    
     
     @IBAction func commitOrderButtonPressed(_ sender: UIButton) {
         
@@ -49,14 +80,15 @@ class CartViewController: UIViewController {
 
     @IBAction func clearCart(_ sender: UIButton) {
         
-        while Cart.current.numberOfItems > 0 {
-            Cart.current.remove(at: Cart.current.numberOfItems - 1)
+        while cart.numberOfItems > 0 {
+            cart.remove(at: cart.numberOfItems - 1)
         }
         
         tableView.reloadData()
+        
     }
-    
-   
+
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -65,7 +97,7 @@ class CartViewController: UIViewController {
 
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)!
-            let (product, offer) = Cart.current.object(at: indexPath.row)
+            let (product, offer) = cart.object(at: indexPath.row)
 
             let vc = segue.destination as! ProductViewController
             vc.product = product
@@ -87,14 +119,14 @@ extension CartViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? Cart.current.numberOfItems : 0
+        return section == 0 ? cart.numberOfItems : 0
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartItemTableViewCell
 
-        let (product, offer) = Cart.current.object(at: indexPath.row)
+        let (product, offer) = cart.object(at: indexPath.row)
          
         cell.imageURL = product.mainImage
         cell.nameLabel.text = product.name
@@ -119,10 +151,11 @@ extension CartViewController: UITableViewDelegate {
                
                definesPresentationContext = true
                let vc = ConfirmationViewController()
+               vc.color = .systemRed
                vc.setTitle(title: "Удалить товар из корзины?")
                vc.addAction(ConfirmationAction(title: "ОК", style: .ok, handler: { _ in
                    
-                   Cart.current.remove(at: indexPath.row)
+                self.cart.remove(at: indexPath.row)
                    tableView.deleteRows(at: [indexPath], with: .automatic)
                    
                }))

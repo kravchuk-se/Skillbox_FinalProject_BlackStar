@@ -50,6 +50,18 @@ class Cart {
         products.count
     }
     
+    var total: Double {
+        var result: Double = 0
+        for product in products {
+            result += product.product!.price
+        }
+        return result
+    }
+    
+    var isEmpty: Bool {
+        numberOfItems == 0
+    }
+    
     func object(at index: Int) -> ProductInCartPresentation {
         assert(index < products.count, "Index out of the bounds")
         

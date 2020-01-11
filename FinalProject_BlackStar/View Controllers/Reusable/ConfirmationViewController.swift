@@ -19,6 +19,8 @@ class ConfirmationViewController: UIViewController {
     
     private var actions: [ConfirmationAction] = []
     private var buttons: [UIButton] = []
+
+    var color: UIColor?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -58,13 +60,13 @@ class ConfirmationViewController: UIViewController {
         switch action.style {
         case .ok:
             
-            button.backgroundColor = .systemBlue
+            button.backgroundColor = color ?? .systemBlue
             button.tintColor = .white
             
         case .cancel:
             
             button.backgroundColor = .clear
-            button.tintColor = .systemBlue
+            button.tintColor = color ?? .systemBlue
             
         }
         
