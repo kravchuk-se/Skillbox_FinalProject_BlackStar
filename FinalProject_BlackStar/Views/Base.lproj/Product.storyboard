@@ -523,7 +523,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uno-VW-D5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Pbv-hG-lUw"/>
             </objects>
-            <point key="canvasLocation" x="3853.6231884057975" y="343.52678571428572"/>
+            <point key="canvasLocation" x="3471" y="240"/>
         </scene>
         <!--Modal Picker-->
         <scene sceneID="nkE-HD-hk7">
